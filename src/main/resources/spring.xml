@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		        http://www.springframework.org/schema/beans/spring-beans.xsd
+		        http://www.springframework.org/schema/aop
+		        http://www.springframework.org/schema/aop/spring-aop.xsd
+		        http://www.springframework.org/schema/context
+		        http://www.springframework.org/schema/context/spring-context.xsd
+		        http://www.springframework.org/schema/tx
+		        http://www.springframework.org/schema/tx/spring-tx.xsd
+		        http://www.springframework.org/schema/mvc
+		        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--开启注解扫描功能-->
+    <context:annotation-config></context:annotation-config>
+
+    <!--定义注解扫描的包-->
+    <context:component-scan base-package="com.jie.domain"></context:component-scan>
+    <context:component-scan base-package="com.jie.dao"></context:component-scan>
+    <context:component-scan base-package="com.jie.service"></context:component-scan>
+
+    <!--开启aop自动代理-->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <!--从上下文中读取db.properties文件-->
+    <context:property-placeholder location="classpath*:db.properties"></context:property-placeholder>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${dbcp.driverClassName}"></property>
+        <property name="url" value="${dbcp.url}"></property>
+        <property name="username" value="${dbcp.username}"></property>
+        <property name="password" value="${dbcp.password}"></property>
+        <property name="maxIdle" value="${dbcp.maxIdle}"></property>
+        <property name="initialSize" value="${dbcp.initialSize}"></property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--配置hibernate的sessionFactory-->
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" id="sessionFactory">
+        <!--指定当前会话工厂使用的数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--指定实体类的位置-->
+        <property name="packagesToScan" value="com.jie.domain"> </property>
+        <property name="hibernateProperties">
+
+                <value>
+                    hibernate.show_sql=true
+                    hibernate.format_sql=true
+                    hibernate.cache.use_second_level_cache=true
+
+                </value>
+
+        </property>
+    </bean>
+
+    <!--配置hibernateTemplate-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean  id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <!-- 要根据hibernate的版本配置 -->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--配置事务属性-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="update" propagation="REQUIRED"/>
+            <tx:method name="delete" propagation="REQUIRED"/>
+            <tx:method name="*" propagation="NOT_SUPPORTED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置事务切入点 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* com.jie.service.impl.*.*(..))" id="pointCut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>
+    </aop:config>
+
+</beans>
