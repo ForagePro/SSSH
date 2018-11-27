@@ -16,6 +16,14 @@ public class User {
     private Integer imgId;
     private int status;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {
