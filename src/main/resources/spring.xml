@@ -19,6 +19,7 @@
     <!--开启注解扫描功能-->
     <context:annotation-config></context:annotation-config>
 
+
     <!--定义注解扫描的包-->
     <context:component-scan base-package="com.jie.domain"></context:component-scan>
     <context:component-scan base-package="com.jie.dao"></context:component-scan>
