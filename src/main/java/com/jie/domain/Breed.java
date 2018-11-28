@@ -1,12 +1,10 @@
 package com.jie.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "breed")
 public class Breed {
     private int id;
     private String name;
