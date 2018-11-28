@@ -49,6 +49,7 @@
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="SSSH/web/Web" />
     </root>
   </artifact>
 </component>
