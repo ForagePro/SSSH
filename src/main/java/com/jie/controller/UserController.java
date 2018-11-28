@@ -21,7 +21,9 @@ public class UserController {
     @ResponseBody
     public String toLogin(String username, String password, HttpServletRequest request) {
         List list = userService.toLogin(username, password,request);
+        System.out.println("");
         return JSON.toJSONString(list);
+
     }
 
     @RequestMapping("/toRegister")
