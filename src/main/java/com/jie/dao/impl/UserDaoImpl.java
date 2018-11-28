@@ -24,19 +24,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<Map> toLogin(String phone, String password, HttpServletRequest request) {
+    public List<Map> toLogin(String username, String password, HttpServletRequest request) {
         String code="1000";
         String msg="账号不存在";
         Map<String,String>map=new HashMap<>();
         List<Map>list=new ArrayList<>();
         Session session= hibernateTemplate.getSessionFactory().getCurrentSession();
-        List<User>uList=session.createQuery("select new User(phone,password) from User").list();
-
+        List<User>uList=session.createQuery("select new User(username,password) from User").list();
         for (int i=0;i<uList.size();i++){
-            if (uList.get(i).getPhone().equals(phone)){
+            if (uList.get(i).getUsername().equals(username)){
                 if (uList.get(i).getPassword().equals(password)){
                     HttpSession session1=request.getSession();
-                    session1.setAttribute("USER_SESSION_KEY",phone);
+                    session1.setAttribute("USER_SESSION_KEY",username);
                     code="1002";
                     msg="登录成功！";
                 }else {
@@ -53,16 +52,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String toRegister(User user) {
         Session session= hibernateTemplate.getSessionFactory().getCurrentSession();
-        List<String> list=session.createQuery("select phone from User").list();
-        for (int i=0;i<list.size();i++){
-            if (list.get(i).equals(user.getPhone())){
-                return "用户名存在";
-            }else {
-                user.setUsername("用户"+user.getPhone());
-                hibernateTemplate.save(user);
-                return "注册成功";
+        List<String> list=session.createQuery("select username from User").list();
+        String msg="注册成功";
+        if (list.size()==0){
+            hibernateTemplate.save(user);
+        }else {
+            for (int i=0;i<list.size();i++){
+                if (list.get(i).equals(user.getUsername())){
+                    msg="用户名存在";
+                    return msg;
+
+                }
             }
         }
-        return null;
+        System.out.println("123");
+        hibernateTemplate.save(user);
+        msg="注册成功";
+        return msg;
     }
 }

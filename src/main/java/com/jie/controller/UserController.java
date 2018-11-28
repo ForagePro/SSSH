@@ -19,9 +19,8 @@ public class UserController {
     private UserService userService;
     @RequestMapping("/toLogin")
     @ResponseBody
-    public String toLogin(String phone, String password, HttpServletRequest request) {
-
-        List list = userService.toLogin(phone, password,request);
+    public String toLogin(String username, String password, HttpServletRequest request) {
+        List list = userService.toLogin(username, password,request);
         return JSON.toJSONString(list);
     }
 

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface UserDao {
     //用户登录
-    public List<Map> toLogin(String phone, String password, HttpServletRequest request);
+    public List<Map> toLogin(String username, String password, HttpServletRequest request);
     //用户注册
     public String toRegister(User user);
 

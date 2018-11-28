@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Override
-    public List<Map> toLogin(String phone, String password, HttpServletRequest request) {
-       List list=userDao.toLogin(phone, password,request);
+    public List<Map> toLogin(String username, String password, HttpServletRequest request) {
+       List list=userDao.toLogin(username, password,request);
        return list;
     }
 

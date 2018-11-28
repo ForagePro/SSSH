@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    public List<Map> toLogin(String phone, String password, HttpServletRequest request);
+    public List<Map> toLogin(String username, String password, HttpServletRequest request);
 
     public String toRegister(User user);
 }
