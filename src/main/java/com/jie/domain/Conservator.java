@@ -13,6 +13,15 @@ public class Conservator {
     private String name;
     private int roleId;
     private Timestamp createTime;
+    private String password;
+
+    public Conservator(String account, String password) {
+        this.account = account;
+        this.password = password;
+    }
+
+    public Conservator() {
+    }
 
     @Id
     @Column(name = "id")
@@ -62,6 +71,16 @@ public class Conservator {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

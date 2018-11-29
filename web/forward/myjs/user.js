@@ -15,6 +15,10 @@ $(function () {
                 } else if (key == "1002") {
                     //用户名密码正确，跳转页面
                     window.location.href = "../person/index.html";
+                }else if (key == "1003") {
+                    alert(data[0][key]);
+                }else if (key == "1004") {
+                    alert(data[0][key]);
                 }
             }
         },"json");
@@ -27,7 +31,7 @@ $(function () {
         if (uname()==true&&pass()==true&&repass()==true){
             var toRegister = $.get("../../user/toRegister",{"username":$("#user").val(),"password":$("#password").val()},function (data) {
                 alert(data);
-                window.location.href="login.html";
+                // window.location.href="register.html";
             },"json");
         }else {
             alert("请输入正确的信息");

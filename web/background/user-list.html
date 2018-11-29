@@ -28,15 +28,15 @@
     <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
     -
     <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name=""><button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜用户</button>
+    <input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="keywords" name="keywords"><button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜用户</button>
 
   </div>
   <div class="cl pd-5 bg-1 bk-gray mt-20">
     <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="icon-trash"></i> 批量删除</a>
     <a href="javascript:;" onclick="user_add('550','','添加用户','user-add.html')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加用户</a></span>
-    <span class="r">共有数据：<strong>88</strong> 条</span>
+    <span class="r">共有数据：<strong></strong> 条</span>
   </div>
-  <table class="table table-border table-bordered table-hover table-bg table-sort">
+  <table class="table table-border table-bordered table-hover table-bg table-sort" >
     <thead>
       <tr class="text-c">
         <th width="25"><input type="checkbox" name="" value=""></th>
@@ -51,7 +51,7 @@
         <th width="100">操作</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tb">
       <tr class="text-c">
         <td><input type="checkbox" value="1" name=""></td>
         <td>1</td>
@@ -67,8 +67,10 @@
       </tr>
     </tbody>
   </table>
+
   <div id="pageNav" class="pageNav"></div>
 </div>
+<!--<script src="myjs/user.js"></script>-->
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>

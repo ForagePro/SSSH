@@ -12,4 +12,16 @@ public interface UserDao {
     //用户注册
     public String toRegister(User user);
 
+    //获取所有的存在用户
+    public List<User> toShowAll(int pageNo,int pageSize);
+
+    //删除用户
+    public void toDelete(int id);
+
+    //修改用户状态
+    public void toUpdateStatus(int status,int id);
+
+    //查询用户
+    public List<User> toFind(String datemin,String datemax,int pageNo,int pageSize);
+
 }
