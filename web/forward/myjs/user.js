@@ -14,7 +14,7 @@ $(function () {
                     alert(data[0][key]);
                 } else if (key == "1002") {
                     //用户名密码正确，跳转页面
-                    window.location.href = "../person/index.html";
+                    window.location.href = "../person/index.html?username="+$("#user").val();
                 }
             }
         },"json");

@@ -1,10 +1,16 @@
 package com.jie.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.regex.Pattern;
 
 @Entity
 public class User {
@@ -13,8 +19,12 @@ public class User {
     private String password;
     private String phone;
     private Timestamp registerTime;
-    private Integer imgId;
+    private String imgPath;
     private int status;
+    private int sex;
+    private Date birthday;
+    private String email;
+    private String name;
 
     public User(String username, String password) {
         this.username = username;
@@ -75,13 +85,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "img_id")
-    public Integer getImgId() {
-        return imgId;
+    @Column(name = "img_path")
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImgId(Integer imgId) {
-        this.imgId = imgId;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Basic
@@ -92,6 +102,47 @@ public class User {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Basic
+    @Column(name = "sex")
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    @Basic
+    @Column(name = "birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -107,7 +158,7 @@ public class User {
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
         if (registerTime != null ? !registerTime.equals(user.registerTime) : user.registerTime != null) return false;
-        if (imgId != null ? !imgId.equals(user.imgId) : user.imgId != null) return false;
+       /* if (imgId != null ? !imgId.equals(user.imgId) : user.imgId != null) return false;*/
 
         return true;
     }
@@ -119,7 +170,7 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (registerTime != null ? registerTime.hashCode() : 0);
-        result = 31 * result + (imgId != null ? imgId.hashCode() : 0);
+       /* result = 31 * result + (imgId != null ? imgId.hashCode() : 0);*/
         result = 31 * result + status;
         return result;
     }
