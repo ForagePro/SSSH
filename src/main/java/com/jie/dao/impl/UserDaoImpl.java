@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -68,12 +69,10 @@ public class UserDaoImpl implements UserDao {
                 if (list.get(i).equals(user.getUsername())){
                     msg="用户名存在";
                     return msg;
-
                 }
             }
         }
-        System.out.println("123");
-
+        user.setImgPath("getAvatar.do.jpg");
         hibernateTemplate.save(user);
         msg="注册成功";
         return msg;
@@ -125,6 +124,62 @@ public class UserDaoImpl implements UserDao {
     public void toDelete(int id) {
         User user=hibernateTemplate.get(User.class,id);
         hibernateTemplate.delete(user);
+    }
+
+    //通过用户名查找指定用户
+    @Override
+    public User findUser(String username) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<User> list=session.createQuery("from User where username=?").setString(0,username).list();
+        if(list!=null&&list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
+    //更新用户图片
+    @Override
+    public void updateUserImg(User user) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<User> list=session.createQuery("from User where username=?").setString(0,user.getUsername()).list();
+        if(list!=null&&list.size()>0){
+            User user1=list.get(0);
+            user1.setImgPath(user.getImgPath());
+            hibernateTemplate.update(user1);
+        }
+
+    }
+    //更新用户信息
+    @Override
+    public void updateUser(User user) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        User user1=session.get(User.class,user.getId());
+        user1.setName(user.getName());
+        user1.setBirthday(user.getBirthday());
+        user1.setEmail(user.getEmail());
+        user1.setSex(user.getSex());
+        hibernateTemplate.update(user1);
+    }
+
+    //验证原始密码是否正确
+    @Override
+    public String originCode(String username) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<User> list=session.createQuery("from User where username=?").setString(0,username).list();
+        if(list!=null&&list.size()>0){
+            return list.get(0).getPassword();
+        }
+        return "";
+    }
+    //更新密码
+    @Override
+    public void updatePwd(User user) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<User> list=session.createQuery("from User where username=?").setString(0,user.getUsername()).list();
+        if(list!=null&&list.size()>0){
+            User user1=list.get(0);
+            user1.setPassword(user.getPassword());
+            hibernateTemplate.update(user1);
+        }
     }
 
     @Override

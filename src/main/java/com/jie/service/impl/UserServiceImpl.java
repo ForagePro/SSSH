@@ -27,6 +27,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUser(String username) {
+        return userDao.findUser(username);
+    }
+
+    @Override
+    public void updateUserImg(User user) {
+        userDao.updateUserImg(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
+
+    //验证原始密码是否正确
+    @Override
+    public String originCode(String username) {
+        return userDao.originCode(username);
+    }
+
+    @Override
+    public void updatePwd(User user) {
+        userDao.updatePwd(user);
+    }
+
+    @Override
     public List<User> toFind(String datemin,String datemax,int pageNo,int pageSize) {
         List<User>list=userDao.toFind(datemin,datemax,pageNo,pageSize);
         return list;
