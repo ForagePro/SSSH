@@ -24,4 +24,7 @@ public interface UserDao {
     //查询用户
     public List<User> toFind(String datemin,String datemax,int pageNo,int pageSize);
 
+
+    //搜索用户
+    public List<User> toFindUser(String keywords,int pageNo,int pageSize);
 }

@@ -165,4 +165,14 @@ $("#next").click(function () {
     pageNo--;
     window.location.href="member-list.html";
 });
-
+//搜索
+$("#btn").click(function () {
+    $.get("../user/toFindUser",{"keywords":$("#keywords").val(),"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
+        $("#tb").empty();
+        if (data.length==0){
+            alert("用户不存在");
+        } else {
+            addEle(data);
+        }
+    },"json");
+});

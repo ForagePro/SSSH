@@ -39,6 +39,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> toFindUser(String keywords,int pageNo,int pageSize) {
+        List<User>list=userDao.toFindUser(keywords,pageNo,pageSize);
+        return list;
+    }
+
+    @Override
     public void toDelete(int id) {
         userDao.toDelete(id);
     }

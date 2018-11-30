@@ -46,6 +46,12 @@ public class UserController {
 //        System.out.println(JSON.toJSONString(list));
         return JSON.toJSONString(list);
     }
+    @RequestMapping("/toFindUser")
+    @ResponseBody
+    public String toFindUser(String keywords,int pageNo,int pageSize){
+        List<User>list=userService.toFindUser(keywords,pageNo,pageSize);
+        return JSON.toJSONString(list);
+    }
 
 //    @RequestMapping("/toShow")
 //    @ResponseBody

@@ -17,6 +17,7 @@ public interface UserService {
 
     public void toUpdateStatus(int status,int id);
 
+    public List<User> toFindUser(String keywords,int pageNo,int pageSize);
 
     public void toDelete(int id);
 
