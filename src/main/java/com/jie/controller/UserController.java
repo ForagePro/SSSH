@@ -5,24 +5,14 @@ import com.jie.domain.User;
 import com.jie.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -138,7 +128,7 @@ public class UserController {
         String username=(String)request.getSession().getAttribute("USER_SESSION_KEY");
         User user=new User();
         user.setUsername(username);
-        user.setImgPath(myFile.getOriginalFilename());
+        user.setImgPath("/forward/images/"+myFile.getOriginalFilename());
         userService.updateUserImg(user);
         return JSON.toJSONString("OK");
     }

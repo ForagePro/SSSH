@@ -1,9 +1,10 @@
+var path = "/" + location.pathname.split("/")[1];
 $(function () {
 //管理员登录
 
     $("#btn").click(function () {
         if (uname()==true&&pass()==true&&code1()==true) {
-            var tologin = $.get("../conser/toLogin", {
+            var tologin = $.get(path+"/conser/toLogin", {
                 "account": $("#account").val(),
                 "password": $("#password").val(),
                 "code": $("#codes").val()

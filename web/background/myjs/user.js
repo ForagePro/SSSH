@@ -1,7 +1,8 @@
 var pageNo=1;
+var path = "/" + location.pathname.split("/")[1];
 $(function () {
 
-    var toshow=$.get("../user/toShowAll",{"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
+    var toshow=$.get(path+"/user/toShowAll",{"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
         $("#num").html(data.length);
         if (data.length<($(".select").val())){
             $("#next").attr("disabled",true);
@@ -24,7 +25,7 @@ function toFind() {
     }else {
         datemax=$("#datemax").val();
     }
-    $.get("../user/toFind",{"datemin":datemin,"datemax":datemax,"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
+    $.get(path+"/user/toFind",{"datemin":datemin,"datemax":datemax,"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
         if (data.length<($(".select").val())){
             $("#next").attr("disabled",true);
         }else {
@@ -77,7 +78,7 @@ function addEle(data) {
         $("#tb").append('<tr class="text-c">\n' +
             '\t\t\t\t<td><input type="checkbox" value="1" name=""></td>\n' +
             '\t\t\t\t<td>'+ mode.id+'</td>\n' +
-            '\t\t\t\t<td><img src="'+mode.imgPath+'"></td>\n' +
+            '\t\t\t\t<td><img src="'+(path+mode.imgPath)+'"></td>\n' +
             '\t\t\t\t<td><u style="cursor:pointer" class="text-primary" onclick="member_show('+mode.username+',\'member-show.html\',\'10001\',\'360\',\'400\')">'+mode.username+'</u></td>\n' +
             '\t\t\t\t<td >'+sex+'</td>\n' +
             '\t\t\t\t<td>'+mode.phone+'</td>\n' +
@@ -121,7 +122,7 @@ function member_update(id,status) {
     }
 
     if (flag){
-        $.get("../user/toUpdateStatus",{"status":status,"id":id},function () {
+        $.get(path+"/user/toUpdateStatus",{"status":status,"id":id},function () {
             window.location.href="member-list.html";
         });
     }else {
@@ -134,7 +135,7 @@ function member_dell(id,status) {
         flag=confirm("确定删除");
         status=2;
         if (flag){
-            $.get("../user/toUpdateStatus",{"status":status,"id":id},function () {
+            $.get(path+"/user/toUpdateStatus",{"status":status,"id":id},function () {
                 window.location.href="member-list.html";
             });
         }else {
@@ -167,7 +168,7 @@ $("#next").click(function () {
 });
 //搜索
 $("#btn").click(function () {
-    $.get("../user/toFindUser",{"keywords":$("#keywords").val(),"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
+    $.get(path+"/user/toFindUser",{"keywords":$("#keywords").val(),"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
         $("#tb").empty();
         if (data.length==0){
             alert("用户不存在");

@@ -1,9 +1,8 @@
-
+var path = "/" + location.pathname.split("/")[1];
 $(function () {
     //用户登录
-    var path="/"+location.pathname.split("/")[1];
     $("#btn").click(function () {
-        var tologin = $.get("../../user/toLogin", {"username": $("#user").val(), "password": $("#password").val()}, function (data) {
+        var tologin = $.get(path+"/user/toLogin", {"username": $("#user").val(), "password": $("#password").val()}, function (data) {
             //var tip = $("#error");
             for (var key in data[0]){
                 console.log(key);
@@ -29,7 +28,7 @@ $(function () {
     //注册
     $("#rbtn").click(function () {
         if (uname()==true&&pass()==true&&repass()==true){
-            var toRegister = $.get("../../user/toRegister",{"username":$("#user").val(),"password":$("#password").val()},function (data) {
+            var toRegister = $.get(path+"/user/toRegister",{"username":$("#user").val(),"password":$("#password").val()},function (data) {
                 alert(data);
                 // window.location.href="register.html";
             },"json");

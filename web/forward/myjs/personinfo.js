@@ -12,13 +12,13 @@ $(function() {
     /*var username = GetQueryString("username");*/
     /*console.log(username);*/
     var path = "/" + location.pathname.split("/")[1];
-    $.get(path + "/user/findUser.do", function (data) {
+    $.get( path+"/user/findUser.do", function (data) {
         console.log(data);
         if (data == "false") {
             $("#s-name").text("用户不存在");
         } else {
             $("#u-id").attr("value",data[0].id);
-            $(".am-circle").attr("src", "../images/" + data[0].imgPath);
+            $(".am-circle").attr("src", path+data[0].imgPath);
             $("#s-name").text(data[0].username);
             $("#user-name2").attr("value", data[0].name);
             $("#man:checked").val(data[0].sex);
@@ -40,6 +40,9 @@ function formatDate1(times) {
     var year=times.getFullYear();
     var month=times.getMonth()+1;
     var date=times.getDate();
+    if(date.valueOf()>0&&date.valueOf()<10){
+        date="0"+date;
+    }
     return year+"-"+month+"-"+date;
 }
 

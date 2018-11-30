@@ -1,5 +1,7 @@
 package com.jie.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -120,6 +122,7 @@ public class User {
 
     @Basic
     @Column(name = "birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getBirthday() {
         return birthday;
     }

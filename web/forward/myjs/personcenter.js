@@ -15,7 +15,7 @@ $(function() {
         if (data == "false") {
             $("#s-name").text("用户不存在");
         } else {
-            $("#img-user").attr("src", "../images/" + data[0].imgPath);
+            $("#img-user").attr("src",  path+data[0].imgPath);
             $("#s-name").text(data[0].username);
         }
     }, "json");
