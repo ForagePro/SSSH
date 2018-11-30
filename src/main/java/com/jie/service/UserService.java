@@ -10,6 +10,17 @@ public interface UserService {
     public List<Map> toLogin(String username, String password, HttpServletRequest request);
 
     public String toRegister(User user);
+
+    public List<User> toFind(String datemin,String datemax,int pageNo,int pageSize);
+
+    public List<User> toShowAll(int pageNo,int pageSize);
+
+    public void toUpdateStatus(int status,int id);
+
+    public List<User> toFindUser(String keywords,int pageNo,int pageSize);
+
+    public void toDelete(int id);
+
     //根据用户名查询用户
     public User findUser(String username);
     //更新用户信息

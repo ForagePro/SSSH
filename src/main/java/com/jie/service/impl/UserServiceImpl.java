@@ -52,6 +52,34 @@ public class UserServiceImpl implements UserService {
         userDao.updatePwd(user);
     }
 
+    @Override
+    public List<User> toFind(String datemin,String datemax,int pageNo,int pageSize) {
+        List<User>list=userDao.toFind(datemin,datemax,pageNo,pageSize);
+        return list;
+    }
+
+    @Override
+    public List<User> toShowAll(int pageNo,int pageSize) {
+        List<User>list=userDao.toShowAll(pageNo,pageSize);
+        return list;
+    }
+
+    @Override
+    public List<User> toFindUser(String keywords,int pageNo,int pageSize) {
+        List<User>list=userDao.toFindUser(keywords,pageNo,pageSize);
+        return list;
+    }
+
+    @Override
+    public void toDelete(int id) {
+        userDao.toDelete(id);
+    }
+
+    @Override
+    public void toUpdateStatus(int status, int id) {
+        userDao.toUpdateStatus(status,id);
+    }
+
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }

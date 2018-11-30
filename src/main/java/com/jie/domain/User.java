@@ -1,6 +1,8 @@
 package com.jie.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Basic;
@@ -149,29 +151,22 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != user.id) return false;
-        if (status != user.status) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
-        if (registerTime != null ? !registerTime.equals(user.registerTime) : user.registerTime != null) return false;
-       /* if (imgId != null ? !imgId.equals(user.imgId) : user.imgId != null) return false;*/
-
-        return true;
+        return id == user.id &&
+                status == user.status &&
+                sex == user.sex &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(registerTime, user.registerTime) &&
+                Objects.equals(imgPath, user.imgPath) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (registerTime != null ? registerTime.hashCode() : 0);
-       /* result = 31 * result + (imgId != null ? imgId.hashCode() : 0);*/
-        result = 31 * result + status;
-        return result;
+        return Objects.hash(id, username, password, phone, registerTime, imgPath, status, sex, birthday, email, name);
     }
 }
