@@ -1,6 +1,6 @@
 var pageNo=1;
 var path = "/" + location.pathname.split("/")[1];
-$(function () {
+function toShow(){
     var toshow=$.get(path+"/user/toShowAll",{"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
         $("#num").html(data.length);
         if (data.length<($(".select").val())){
@@ -11,7 +11,9 @@ $(function () {
         $("#tb").empty();
         addEle(data);
     },"json");
-
+}
+$(function () {
+    toShow();
 });
 function toFind() {
     var datemin=$("#datemin").val();
@@ -89,7 +91,9 @@ function addEle(data) {
             '\t\t\t</tr>');
     }
 }
-
+$(".select").change(function () {
+    toShow();
+});
 
 function formatDate(times) {
     var year=times.getFullYear();
@@ -153,17 +157,17 @@ function member_dell(id,status) {
 }
 
 //上一页
-$("#previous").click(function () {
+$("#next").click(function () {
     pageNo++;
-    window.location.href="member-list.html";
+    toShow();
 });
 //下一页
-$("#next").click(function () {
+$("#previous").click(function () {
     if (pageNo==1){
         return;
     }
     pageNo--;
-    window.location.href="member-list.html";
+    toShow();
 });
 //搜索
 $("#btn").click(function () {
