@@ -1,7 +1,6 @@
 var pageNo=1;
 var path = "/" + location.pathname.split("/")[1];
 $(function () {
-
     var toshow=$.get(path+"/user/toShowAll",{"pageNo":pageNo,"pageSize":$(".select").val()},function (data) {
         $("#num").html(data.length);
         if (data.length<($(".select").val())){
@@ -78,7 +77,7 @@ function addEle(data) {
         $("#tb").append('<tr class="text-c">\n' +
             '\t\t\t\t<td><input type="checkbox" value="1" name=""></td>\n' +
             '\t\t\t\t<td>'+ mode.id+'</td>\n' +
-            '\t\t\t\t<td><img src="'+(path+mode.imgPath)+'"></td>\n' +
+            '\t\t\t\t<td><img class="img-user" src="'+(path+mode.imgPath)+'"></td>\n' +
             '\t\t\t\t<td><u style="cursor:pointer" class="text-primary" onclick="member_show('+mode.username+',\'member-show.html\',\'10001\',\'360\',\'400\')">'+mode.username+'</u></td>\n' +
             '\t\t\t\t<td >'+sex+'</td>\n' +
             '\t\t\t\t<td>'+mode.phone+'</td>\n' +

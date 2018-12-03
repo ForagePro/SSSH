@@ -1,20 +1,19 @@
 package com.jie.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
+@Table(name = "roundsow")
 public class Roundsow {
     private int id;
-    private int imgId;
+    private String imgPath;
     private String type;
     private int cId;
     private Timestamp createTime;
     private int sort;
-
+    private int status;
     @Id
     @Column(name = "id")
     public int getId() {
@@ -26,13 +25,23 @@ public class Roundsow {
     }
 
     @Basic
-    @Column(name = "img_id")
-    public int getImgId() {
-        return imgId;
+    @Column(name = "img_path")
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Basic
@@ -75,31 +84,25 @@ public class Roundsow {
         this.sort = sort;
     }
 
+    public Roundsow() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Roundsow roundsow = (Roundsow) o;
-
-        if (id != roundsow.id) return false;
-        if (imgId != roundsow.imgId) return false;
-        if (cId != roundsow.cId) return false;
-        if (sort != roundsow.sort) return false;
-        if (type != null ? !type.equals(roundsow.type) : roundsow.type != null) return false;
-        if (createTime != null ? !createTime.equals(roundsow.createTime) : roundsow.createTime != null) return false;
-
-        return true;
+        return id == roundsow.id &&
+                cId == roundsow.cId &&
+                sort == roundsow.sort &&
+                status == roundsow.status &&
+                Objects.equals(imgPath, roundsow.imgPath) &&
+                Objects.equals(type, roundsow.type) &&
+                Objects.equals(createTime, roundsow.createTime);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + imgId;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + cId;
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + sort;
-        return result;
+        return Objects.hash(id, imgPath, type, cId, createTime, sort, status);
     }
 }

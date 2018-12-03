@@ -75,26 +75,6 @@ public class UserDaoImpl implements UserDao {
         return msg;
     }
 
-//    @Override
-//    public List<User> toShow(int pageNo, int pageSize, Map<String,Object> map) {
-//        List<User>list=null;
-//        Session session=hibernateTemplate.getSessionFactory().openSession();
-//        String hql="from User where 1=1 ";
-//        if (map.get("date0")!=null){
-//            hql+=" and create_time between "+map.get("date0")+" and "+map.get("dete");
-//        }
-//        if (map.get("keywords")!=null){
-//            hql+=" and phone like %'"+map.get("keywords")+"'% or username like %'"+map.get("keywords")+"'% or email like %'"+map.get("keywords")+"'% ";
-//        }
-//        System.out.println(hql);
-//        Query query =session.createQuery(hql);
-//        query.setFirstResult((pageNo - 1) * pageSize);
-//        query.setMaxResults(pageSize);
-//        list = query.list();
-//        return list;
-//    }
-
-
     @Override
     public List<User> toFind(String datemin, String datemax, int pageNo, int pageSize) {
         Session session=hibernateTemplate.getSessionFactory().openSession();
