@@ -6,7 +6,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="foragePro" />
-          <element id="module-output" name="SSSH" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
@@ -48,12 +47,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
-          <element id="library" level="project" name="json" />
-          <element id="library" level="project" name="commons-codec-1.9" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="SSSH/web/Web" />
-      <element id="artifact" artifact-name="SSSH:Web exploded" />
     </root>
   </artifact>
 </component>
