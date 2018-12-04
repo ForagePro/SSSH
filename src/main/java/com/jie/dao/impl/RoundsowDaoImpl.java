@@ -31,7 +31,7 @@ public class RoundsowDaoImpl implements RoundsowDao {
 
     @Override
     public List<Roundsow> toShow(int pageNo, int pageSize) {
-        Session session=hibernateTemplate.getSessionFactory().openSession();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<Roundsow>list=session.createQuery("select r from Roundsow r order by sort desc").setFirstResult((pageNo-1)*pageSize).setMaxResults(pageNo*pageSize).list();
         return list;
     }
@@ -64,7 +64,7 @@ public class RoundsowDaoImpl implements RoundsowDao {
 
     @Override
     public List<Roundsow> toFind() {
-        Session session=hibernateTemplate.getSessionFactory().openSession();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<Roundsow>list=session.createQuery("select r from Roundsow r where status=0 order by sort desc").list();
 //        String sql="select * from roundsow where status=0 order by sort desc";
 //        List<Roundsow> list=jdbcTemplate.queryForList(sql,Roundsow.class);
@@ -76,6 +76,13 @@ public class RoundsowDaoImpl implements RoundsowDao {
     public void toDelete(int id) {
         Roundsow roundsow=hibernateTemplate.load(Roundsow.class,id);
         hibernateTemplate.delete(roundsow);
+    }
+
+    @Override
+    public List<Roundsow> toQuery(int status) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Roundsow>list=session.createQuery("select r from Roundsow r where status=? order by sort desc").setInteger(0,status).list();
+        return list;
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

@@ -77,7 +77,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> toFind(String datemin, String datemax, int pageNo, int pageSize) {
-        Session session=hibernateTemplate.getSessionFactory().openSession();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<User>list=session.createQuery("select u from User u where registerTime between ? and ? or birthday between ? and ?").setString(0,datemin).setString(1,datemax).setString(2,datemin).setString(3,datemax).setFirstResult((pageNo-1)*pageSize).setMaxResults(pageNo*pageSize).list();
         return list;
     }
@@ -85,7 +85,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> toShowAll(int pageNo,int pageSize) {
 //        List<User>list=hibernateTemplate.loadAll(User.class);
-        Session session=hibernateTemplate.getSessionFactory().openSession();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<User>list=session.createQuery("from User").setFirstResult((pageNo-1)*pageSize).setMaxResults(pageNo*pageSize).list();
         return list;
     }
@@ -161,7 +161,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> toFindUser(String keywords,int pageNo,int pageSize) {
-        Session session=hibernateTemplate.getSessionFactory().openSession();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<User>list=session.createQuery("select u from User u where username like ? or phone like ? or email like ?").setString(0,"%"+keywords+"%").setString(1,"%"+keywords+"%").setString(2,"%"+keywords+"%").setFirstResult((pageNo-1)*pageSize).setMaxResults(pageNo*pageSize).list();
         return list;
     }

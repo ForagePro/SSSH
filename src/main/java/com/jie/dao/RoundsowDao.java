@@ -23,4 +23,7 @@ public interface RoundsowDao {
 
     //删除图片
     public void toDelete(int id);
+
+    //查询
+    public List<Roundsow>toQuery(int status);
 }

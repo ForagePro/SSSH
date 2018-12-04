@@ -18,4 +18,6 @@ public interface RoundsowService {
     public void toDelete(int id);
 
     public List<Roundsow> toFind();
+
+    public List<Roundsow> toQuery(int status);
 }

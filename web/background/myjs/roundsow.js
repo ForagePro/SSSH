@@ -123,3 +123,15 @@ function picture_del1(id,status) {
     }
 }
 
+//查询
+$("#select1").change(function () {
+    if ($("#select1").val()==3){
+        window.location.href="picture-list.html";
+    } else {
+        $.get(path+"/round/toQuery",{"status":$("#select1").val()},function (data) {
+            $("#tb").empty();
+            addEle(data);
+        },"json");
+    }
+
+});

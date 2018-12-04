@@ -12,6 +12,12 @@ public class Receiveaddress {
     private String address;
     private int code;
     private int uId;
+    private String phone;
+    private int status;
+    private String province;
+    private String city;
+    private String county;
+
 
     @Id
     @Column(name = "id")
@@ -61,6 +67,56 @@ public class Receiveaddress {
 
     public void setuId(int uId) {
         this.uId = uId;
+    }
+
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @Basic
+    @Column(name = "province")
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    @Basic
+    @Column(name = "city")
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Basic
+    @Column(name = "county")
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     @Override

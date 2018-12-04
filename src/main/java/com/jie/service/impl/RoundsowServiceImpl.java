@@ -42,6 +42,12 @@ public class RoundsowServiceImpl implements RoundsowService {
     }
 
     @Override
+    public List<Roundsow> toQuery(int status) {
+        List<Roundsow>list=roundsowDao.toQuery(status);
+        return list;
+    }
+
+    @Override
     public void toDelete(int id) {
         roundsowDao.toDelete(id);
     }

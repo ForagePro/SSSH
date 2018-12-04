@@ -24,6 +24,7 @@ public class RoundsowController {
 
     //上传图片
     @RequestMapping("/toAdd")
+    @ResponseBody
     public String toAdd(  HttpServletRequest request,Roundsow roundsow,MultipartFile myFile){
         String path=request.getServletContext().getRealPath("forward/images/");
 //        System.out.println(path+"==============>"+myFile.getOriginalFilename());
@@ -66,6 +67,12 @@ public class RoundsowController {
         return JSON.toJSONString(list);
     }
 
+    @RequestMapping("/toQuery")
+    @ResponseBody
+    public String toQuery(int status){
+        List<Roundsow>list=roundsowService.toQuery(status);
+        return JSON.toJSONString(list);
+    }
     public void setRoundsowService(RoundsowService roundsowService) {
         this.roundsowService = roundsowService;
     }
