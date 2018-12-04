@@ -1,10 +1,13 @@
 package com.jie.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Entity
 public class Dispatch {
@@ -13,8 +16,7 @@ public class Dispatch {
     private String destination;
     private BigDecimal cost;
     private String content;
-    private String logname;
-    private int logcode;
+    private Timestamp createTime;
 
     @Id
     @Column(name = "id")
@@ -67,23 +69,14 @@ public class Dispatch {
     }
 
     @Basic
-    @Column(name = "logname")
-    public String getLogname() {
-        return logname;
+    @Column(name = "create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setLogname(String logname) {
-        this.logname = logname;
-    }
-
-    @Basic
-    @Column(name = "logcode")
-    public int getLogcode() {
-        return logcode;
-    }
-
-    public void setLogcode(int logcode) {
-        this.logcode = logcode;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -94,13 +87,11 @@ public class Dispatch {
         Dispatch dispatch = (Dispatch) o;
 
         if (id != dispatch.id) return false;
-        if (logcode != dispatch.logcode) return false;
         if (way != null ? !way.equals(dispatch.way) : dispatch.way != null) return false;
         if (destination != null ? !destination.equals(dispatch.destination) : dispatch.destination != null)
             return false;
         if (cost != null ? !cost.equals(dispatch.cost) : dispatch.cost != null) return false;
         if (content != null ? !content.equals(dispatch.content) : dispatch.content != null) return false;
-        if (logname != null ? !logname.equals(dispatch.logname) : dispatch.logname != null) return false;
 
         return true;
     }
@@ -112,8 +103,6 @@ public class Dispatch {
         result = 31 * result + (destination != null ? destination.hashCode() : 0);
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (logname != null ? logname.hashCode() : 0);
-        result = 31 * result + logcode;
         return result;
     }
 }
