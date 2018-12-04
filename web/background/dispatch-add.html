@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+	<style type="text/css">
+		.disabled{
+			　　pointer-events:none;
+			　　cursor:default;
+		}
+	</style>
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加配送费</title>
+</head>
+<body>
+<div class="page-container">
+	<form method="post" class="form form-horizontal" id="form-user-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				配送方式：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<label class="am-radio-inline">
+					<input id="a-logistics" type="radio" checked="checked" name="way" value="物流" data-am-ucheck > 物流
+				</label>
+				<label class="am-radio-inline">
+					<input id="a-delivery" type="radio" name="way" value="快递" data-am-ucheck> 快递
+				</label>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				配送地：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<select id="d-a-pro" class="input-text" style="width:120px;">
+					<option value="选择省">选择省</option>
+				</select>
+				<select id="d-a-city" class="input-text" style="width:120px;">
+					<option value="选择市">选择市</option>
+				</select>
+				<select id="d-a-area" class="input-text" style="width:120px;">
+					<option value="选择县区">选择县区</option>
+				</select><p id="msg"></p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				配送费：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input  id="d-a-cost" type="text" class="input-text" value="" placeholder="请输入配送费" name="cost">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+			</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<textarea id="d-a-content" name="content" cols="" rows="" class="textarea"  placeholder="备注"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-9 col-offset-2">
+				<a id="c-a-submit" onclick="addDispatch()" class="btn btn-primary radius">保存</a>
+				<a href="" class="btn btn-primary radius">返回</a>
+			</div>
+		</div>
+		<p id="msg3"></p>
+	</form>
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="myjs/dispatch.js"></script>
+</body>
+</html>
