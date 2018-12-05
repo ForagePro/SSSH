@@ -12,15 +12,16 @@ public class Commodity {
     private int id;
     private String name;
     private int bId;
-    private BigDecimal price;
+    private double price;
     private int status;
     private Timestamp createTime;
-    private Integer imgId;
-    private BigDecimal downprice;
+    private String imgPath;
+    private double downprice;
     private double minsaleweight;
     private double stockbalance;
     private String details;
     private int sort;
+    private String unit;
 
     @Id
     @Column(name = "id")
@@ -54,11 +55,11 @@ public class Commodity {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -83,22 +84,22 @@ public class Commodity {
     }
 
     @Basic
-    @Column(name = "img_id")
-    public Integer getImgId() {
-        return imgId;
+    @Column(name = "img_path")
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImgId(Integer imgId) {
-        this.imgId = imgId;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Basic
     @Column(name = "downprice")
-    public BigDecimal getDownprice() {
+    public double getDownprice() {
         return downprice;
     }
 
-    public void setDownprice(BigDecimal downprice) {
+    public void setDownprice(double downprice) {
         this.downprice = downprice;
     }
 
@@ -142,6 +143,35 @@ public class Commodity {
         this.sort = sort;
     }
 
+    public Commodity() {
+    }
+
+    public Commodity(int id, String name, int bId, double price, int status, Timestamp createTime, String imgPath, double downprice, double minsaleweight, double stockbalance, String details, int sort, String unit) {
+        this.id = id;
+        this.name = name;
+        this.bId = bId;
+        this.price = price;
+        this.status = status;
+        this.createTime = createTime;
+        this.imgPath = imgPath;
+        this.downprice = downprice;
+        this.minsaleweight = minsaleweight;
+        this.stockbalance = stockbalance;
+        this.details = details;
+        this.sort = sort;
+        this.unit = unit;
+    }
+
+    @Basic
+    @Column(name = "unit")
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -156,10 +186,10 @@ public class Commodity {
         if (Double.compare(commodity.stockbalance, stockbalance) != 0) return false;
         if (sort != commodity.sort) return false;
         if (name != null ? !name.equals(commodity.name) : commodity.name != null) return false;
-        if (price != null ? !price.equals(commodity.price) : commodity.price != null) return false;
+        //if (price != null ? !price.equals(commodity.price) : commodity.price != null) return false;
         if (createTime != null ? !createTime.equals(commodity.createTime) : commodity.createTime != null) return false;
-        if (imgId != null ? !imgId.equals(commodity.imgId) : commodity.imgId != null) return false;
-        if (downprice != null ? !downprice.equals(commodity.downprice) : commodity.downprice != null) return false;
+        //if (imgId != null ? !imgId.equals(commodity.imgId) : commodity.imgId != null) return false;
+        //if (downprice != null ? !downprice.equals(commodity.downprice) : commodity.downprice != null) return false;
         if (details != null ? !details.equals(commodity.details) : commodity.details != null) return false;
 
         return true;
@@ -172,11 +202,11 @@ public class Commodity {
         result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + bId;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+        //result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + status;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (imgId != null ? imgId.hashCode() : 0);
-        result = 31 * result + (downprice != null ? downprice.hashCode() : 0);
+        //result = 31 * result + (imgId != null ? imgId.hashCode() : 0);
+        //result = 31 * result + (downprice != null ? downprice.hashCode() : 0);
         temp = Double.doubleToLongBits(minsaleweight);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(stockbalance);
