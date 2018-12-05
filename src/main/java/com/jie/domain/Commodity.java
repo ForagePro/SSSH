@@ -1,9 +1,6 @@
 package com.jie.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -11,16 +8,28 @@ import java.sql.Timestamp;
 public class Commodity {
     private int id;
     private String name;
-    private int bId;
+    //private int bId;
     private BigDecimal price;
     private int status;
     private Timestamp createTime;
-    private Integer imgId;
+    private String imgPath;
     private BigDecimal downprice;
     private double minsaleweight;
     private double stockbalance;
     private String details;
     private int sort;
+    private String unit;
+    private Breed breed;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "b_id")
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
 
     @Id
     @Column(name = "id")
@@ -42,7 +51,7 @@ public class Commodity {
         this.name = name;
     }
 
-    @Basic
+    /*@Basic
     @Column(name = "b_id")
     public int getbId() {
         return bId;
@@ -50,7 +59,7 @@ public class Commodity {
 
     public void setbId(int bId) {
         this.bId = bId;
-    }
+    }*/
 
     @Basic
     @Column(name = "price")
@@ -83,13 +92,13 @@ public class Commodity {
     }
 
     @Basic
-    @Column(name = "img_id")
-    public Integer getImgId() {
-        return imgId;
+    @Column(name = "img_path")
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImgId(Integer imgId) {
-        this.imgId = imgId;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Basic
@@ -142,6 +151,16 @@ public class Commodity {
         this.sort = sort;
     }
 
+    @Basic
+    @Column(name = "unit")
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,7 +169,7 @@ public class Commodity {
         Commodity commodity = (Commodity) o;
 
         if (id != commodity.id) return false;
-        if (bId != commodity.bId) return false;
+       // if (bId != commodity.bId) return false;
         if (status != commodity.status) return false;
         if (Double.compare(commodity.minsaleweight, minsaleweight) != 0) return false;
         if (Double.compare(commodity.stockbalance, stockbalance) != 0) return false;
@@ -158,7 +177,7 @@ public class Commodity {
         if (name != null ? !name.equals(commodity.name) : commodity.name != null) return false;
         if (price != null ? !price.equals(commodity.price) : commodity.price != null) return false;
         if (createTime != null ? !createTime.equals(commodity.createTime) : commodity.createTime != null) return false;
-        if (imgId != null ? !imgId.equals(commodity.imgId) : commodity.imgId != null) return false;
+        if (imgPath != null ? !imgPath.equals(commodity.imgPath) : commodity.imgPath != null) return false;
         if (downprice != null ? !downprice.equals(commodity.downprice) : commodity.downprice != null) return false;
         if (details != null ? !details.equals(commodity.details) : commodity.details != null) return false;
 
@@ -171,11 +190,11 @@ public class Commodity {
         long temp;
         result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + bId;
+        //result = 31 * result + bId;
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + status;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (imgId != null ? imgId.hashCode() : 0);
+        result = 31 * result + (imgPath != null ? imgPath.hashCode() : 0);
         result = 31 * result + (downprice != null ? downprice.hashCode() : 0);
         temp = Double.doubleToLongBits(minsaleweight);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
