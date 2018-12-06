@@ -1,9 +1,6 @@
 package com.jie.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -12,8 +9,9 @@ public class Shoplist {
     private int cId;
     private int num;
     private String oCode;
-    private BigDecimal price;
+    private double price;
     private int dId;
+    private int odId;
 
     @Id
     @Column(name = "id")
@@ -57,11 +55,11 @@ public class Shoplist {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -73,6 +71,28 @@ public class Shoplist {
 
     public void setdId(int dId) {
         this.dId = dId;
+    }
+
+//    @ManyToOne
+//    @JoinColumn(name = "od_id")
+//    @Basic(fetch = FetchType.LAZY)
+//    public Orderdetails getOrderdetails() {
+//        return orderdetails;
+//    }
+//
+//    public void setOrderdetails(Orderdetails orderdetails) {
+//        this.orderdetails = orderdetails;
+//    }
+
+
+    @Basic
+    @Column(name = "od_id")
+    public int getOdId() {
+        return odId;
+    }
+
+    public void setOdId(int odId) {
+        this.odId = odId;
     }
 
     @Override
@@ -87,7 +107,7 @@ public class Shoplist {
         if (num != shoplist.num) return false;
         if (dId != shoplist.dId) return false;
         if (oCode != null ? !oCode.equals(shoplist.oCode) : shoplist.oCode != null) return false;
-        if (price != null ? !price.equals(shoplist.price) : shoplist.price != null) return false;
+        //if (price != null ? !price.equals(shoplist.price) : shoplist.price != null) return false;
 
         return true;
     }
@@ -98,7 +118,7 @@ public class Shoplist {
         result = 31 * result + cId;
         result = 31 * result + num;
         result = 31 * result + (oCode != null ? oCode.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+       // result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + dId;
         return result;
     }
