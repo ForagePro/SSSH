@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>物流</title>
+    <style type="text/css">
+        #w{
+            width: 500px;
+            height: 450px;
+            background-color: #cccccc;
+            margin: auto;
+        }
+    </style>
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="w">
+        物流单号：<input id="code" style="height: 20px" type="text"><br>
+        物流名称：<input id="name" style="height: 20px" type="text"><br>
+        <button id="c-submit" onclick="addCode()" class="btn btn-primary radius">确定</button>
+        <a id="" href="order-list.html" style="border: 1px #c2ccd1 solid;background-color: #0a628f;color: #FFFFFF;padding: 2px;">取消</a>
+    </div>
+</body>
+<script>
+    var path = "/" + location.pathname.split("/")[1];
+
+    function GetQueryString(name)
+    {
+        //(^|&)匹配^开始的位置匹配的第一个参数，&匹配的不是第一个参数
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+        if(r!=null)
+            return  unescape(r[2]);
+        return null;
+    }
+    function addCode() {
+        var id=GetQueryString("id");
+        $.get(path+"/order/updateCode.do",
+            {"id":id,"code":$("#code").val(),"name":$("#name").val()},
+            function (data) {
+                if(data=="true"){
+                    window.location.href="order-list.html";
+                }else{
+                    alert("添加失败！");
+                }
+            },"json")
+
+    }
+</script>
+</html>

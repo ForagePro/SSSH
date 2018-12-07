@@ -11,7 +11,7 @@ public class Ordertime {
     private int id;
     private String code;
     private String oCode;
-    private int sId;
+    private int status;
     private String name;
     private Timestamp subTime;
     private Timestamp payTime;
@@ -52,13 +52,13 @@ public class Ordertime {
     }
 
     @Basic
-    @Column(name = "s_id")
-    public int getsId() {
-        return sId;
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
     }
 
-    public void setsId(int sId) {
-        this.sId = sId;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Basic
@@ -149,7 +149,7 @@ public class Ordertime {
         Ordertime ordertime = (Ordertime) o;
 
         if (id != ordertime.id) return false;
-        if (sId != ordertime.sId) return false;
+        if (status != ordertime.status) return false;
         if (code != null ? !code.equals(ordertime.code) : ordertime.code != null) return false;
         if (oCode != null ? !oCode.equals(ordertime.oCode) : ordertime.oCode != null) return false;
         if (name != null ? !name.equals(ordertime.name) : ordertime.name != null) return false;
@@ -169,7 +169,7 @@ public class Ordertime {
         int result = id;
         result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (oCode != null ? oCode.hashCode() : 0);
-        result = 31 * result + sId;
+        result = 31 * result + status;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (subTime != null ? subTime.hashCode() : 0);
         result = 31 * result + (payTime != null ? payTime.hashCode() : 0);
