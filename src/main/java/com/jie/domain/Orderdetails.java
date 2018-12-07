@@ -11,9 +11,6 @@ import java.util.Set;
 public class Orderdetails {
     private int id;
     private String oCode;
-//    private int uId;
-//    private int rId;
-    private double dId;
     private Timestamp createTime;
     private String buymessage;
     private String invoicetitle;
@@ -23,7 +20,57 @@ public class Orderdetails {
     private Receiveaddress receiveaddress;
     private Set<Shoplist> set=new HashSet<>();
     private int status;
+   private double dId;
 
+    @Basic
+    @Column(name = "d_id")
+    public double getdId() {
+        return dId;
+    }
+
+    public void setdId(double dId) {
+        this.dId = dId;
+    }
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "od_id")
+    public Set<Shoplist> getSet() {
+        return set;
+    }
+
+    public void setSet(Set<Shoplist> set) {
+        this.set = set;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "u_id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "od_id")
+    public Ordertime getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(Ordertime ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "r_id")
+    public Receiveaddress getReceiveaddress() {
+        return receiveaddress;
+    }
+
+    public void setReceiveaddress(Receiveaddress receiveaddress) {
+        this.receiveaddress = receiveaddress;
+    }
 
     @Id
     @Column(name = "id")
@@ -45,35 +92,6 @@ public class Orderdetails {
         this.oCode = oCode;
     }
 
-    @Basic
-    @Column(name = "status")
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    //    @Basic
-//    @Column(name = "u_id")
-//    public int getuId() {
-//        return uId;
-//    }
-//
-//    public void setuId(int uId) {
-//        this.uId = uId;
-//    }
-//
-//    @Basic
-//    @Column(name = "r_id")
-//    public int getrId() {
-//        return rId;
-//    }
-//
-//    public void setrId(int rId) {
-//        this.rId = rId;
-//    }
 
     @Basic
     @Column(name = "create_time")
@@ -115,55 +133,6 @@ public class Orderdetails {
         this.sum = sum;
     }
 
-    @Basic
-    @Column(name = "d_id")
-    public double getdId() {
-        return dId;
-    }
-
-    public void setdId(double dId) {
-        this.dId = dId;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "u_id")
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ot_id")
-    public Ordertime getOrdertime() {
-        return ordertime;
-    }
-
-    public void setOrdertime(Ordertime ordertime) {
-        this.ordertime = ordertime;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "r_id")
-    public Receiveaddress getReceiveaddress() {
-        return receiveaddress;
-    }
-
-    public void setReceiveaddress(Receiveaddress receiveaddress) {
-        this.receiveaddress = receiveaddress;
-    }
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "od_id")
-    public Set<Shoplist> getSet() {
-        return set;
-    }
-
-    public void setSet(Set<Shoplist> set) {
-        this.set = set;
-    }
 
 
     @Override

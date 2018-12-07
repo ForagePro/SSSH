@@ -11,17 +11,28 @@ import java.sql.Timestamp;
 public class Commodity {
     private int id;
     private String name;
-    private int bId;
-    private double price;
+    //private int bId;
+    private BigDecimal price;
     private int status;
     private Timestamp createTime;
     private String imgPath;
-    private double downprice;
+    private BigDecimal downprice;
     private double minsaleweight;
     private double stockbalance;
     private String details;
     private int sort;
     private String unit;
+    private Breed breed;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "b_id")
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
 
     @Id
     @Column(name = "id")
@@ -43,23 +54,23 @@ public class Commodity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "b_id")
-    public int getbId() {
-        return bId;
-    }
-
-    public void setbId(int bId) {
-        this.bId = bId;
-    }
+//    @Basic
+//    @Column(name = "b_id")
+//    public int getbId() {
+//        return bId;
+//    }
+//
+//    public void setbId(int bId) {
+//        this.bId = bId;
+//    }
 
     @Basic
     @Column(name = "price")
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -95,11 +106,11 @@ public class Commodity {
 
     @Basic
     @Column(name = "downprice")
-    public double getDownprice() {
+    public BigDecimal getDownprice() {
         return downprice;
     }
 
-    public void setDownprice(double downprice) {
+    public void setDownprice(BigDecimal downprice) {
         this.downprice = downprice;
     }
 
@@ -146,21 +157,6 @@ public class Commodity {
     public Commodity() {
     }
 
-    public Commodity(int id, String name, int bId, double price, int status, Timestamp createTime, String imgPath, double downprice, double minsaleweight, double stockbalance, String details, int sort, String unit) {
-        this.id = id;
-        this.name = name;
-        this.bId = bId;
-        this.price = price;
-        this.status = status;
-        this.createTime = createTime;
-        this.imgPath = imgPath;
-        this.downprice = downprice;
-        this.minsaleweight = minsaleweight;
-        this.stockbalance = stockbalance;
-        this.details = details;
-        this.sort = sort;
-        this.unit = unit;
-    }
 
     @Basic
     @Column(name = "unit")
@@ -180,16 +176,16 @@ public class Commodity {
         Commodity commodity = (Commodity) o;
 
         if (id != commodity.id) return false;
-        if (bId != commodity.bId) return false;
+        //if (bId != commodity.bId) return false;
         if (status != commodity.status) return false;
         if (Double.compare(commodity.minsaleweight, minsaleweight) != 0) return false;
         if (Double.compare(commodity.stockbalance, stockbalance) != 0) return false;
         if (sort != commodity.sort) return false;
         if (name != null ? !name.equals(commodity.name) : commodity.name != null) return false;
-        //if (price != null ? !price.equals(commodity.price) : commodity.price != null) return false;
+        if (price != null ? !price.equals(commodity.price) : commodity.price != null) return false;
         if (createTime != null ? !createTime.equals(commodity.createTime) : commodity.createTime != null) return false;
-        //if (imgId != null ? !imgId.equals(commodity.imgId) : commodity.imgId != null) return false;
-        //if (downprice != null ? !downprice.equals(commodity.downprice) : commodity.downprice != null) return false;
+        if (imgPath != null ? !imgPath.equals(commodity.imgPath) : commodity.imgPath != null) return false;
+        if (downprice != null ? !downprice.equals(commodity.downprice) : commodity.downprice != null) return false;
         if (details != null ? !details.equals(commodity.details) : commodity.details != null) return false;
 
         return true;
@@ -201,12 +197,12 @@ public class Commodity {
         long temp;
         result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + bId;
-        //result = 31 * result + (price != null ? price.hashCode() : 0);
+        //result = 31 * result + bId;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + status;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        //result = 31 * result + (imgId != null ? imgId.hashCode() : 0);
-        //result = 31 * result + (downprice != null ? downprice.hashCode() : 0);
+        result = 31 * result + (imgPath != null ? imgPath.hashCode() : 0);
+        result = 31 * result + (downprice != null ? downprice.hashCode() : 0);
         temp = Double.doubleToLongBits(minsaleweight);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(stockbalance);

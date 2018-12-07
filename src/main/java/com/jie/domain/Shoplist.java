@@ -14,6 +14,16 @@ public class Shoplist {
     private int odId;
     private Commodity commodity;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_id")
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {
@@ -33,17 +43,6 @@ public class Shoplist {
 //    public void setcId(int cId) {
 //        this.cId = cId;
 //    }
-
-
-    @OneToOne
-    @JoinColumn(name = "c_id")
-    public Commodity getCommodity() {
-        return commodity;
-    }
-
-    public void setCommodity(Commodity commodity) {
-        this.commodity = commodity;
-    }
 
     @Basic
     @Column(name = "num")
