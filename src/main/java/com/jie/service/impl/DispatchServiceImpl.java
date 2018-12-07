@@ -40,4 +40,10 @@ public class DispatchServiceImpl implements DispatchService {
     public void setDispatchDao(DispatchDao dispatchDao) {
         this.dispatchDao = dispatchDao;
     }
+
+    @Override
+    public Dispatch toPay(int id,String code) {
+        Dispatch dispatch=dispatchDao.toPay(id,code);
+        return dispatch;
+    }
 }

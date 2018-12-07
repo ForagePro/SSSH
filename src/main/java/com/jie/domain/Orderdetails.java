@@ -7,19 +7,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "orderdetails")
 public class Orderdetails {
     private int id;
     private String oCode;
 //    private int uId;
 //    private int rId;
+    private double dId;
     private Timestamp createTime;
     private String buymessage;
     private String invoicetitle;
-    private BigDecimal sum;
+    private double sum;
     private User user;
     private Ordertime ordertime;
     private Receiveaddress receiveaddress;
     private Set<Shoplist> set=new HashSet<>();
+    private int status;
+
 
     @Id
     @Column(name = "id")
@@ -41,7 +45,17 @@ public class Orderdetails {
         this.oCode = oCode;
     }
 
-//    @Basic
+    @Basic
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    //    @Basic
 //    @Column(name = "u_id")
 //    public int getuId() {
 //        return uId;
@@ -93,12 +107,22 @@ public class Orderdetails {
 
     @Basic
     @Column(name = "sum")
-    public BigDecimal getSum() {
+    public double getSum() {
         return sum;
     }
 
-    public void setSum(BigDecimal sum) {
+    public void setSum(double sum) {
         this.sum = sum;
+    }
+
+    @Basic
+    @Column(name = "d_id")
+    public double getdId() {
+        return dId;
+    }
+
+    public void setdId(double dId) {
+        this.dId = dId;
     }
 
     @OneToOne
@@ -111,7 +135,7 @@ public class Orderdetails {
         this.user = user;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ot_id")
     public Ordertime getOrdertime() {
         return ordertime;
@@ -131,7 +155,7 @@ public class Orderdetails {
         this.receiveaddress = receiveaddress;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "od_id")
     public Set<Shoplist> getSet() {
         return set;
@@ -140,6 +164,7 @@ public class Orderdetails {
     public void setSet(Set<Shoplist> set) {
         this.set = set;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -155,7 +180,7 @@ public class Orderdetails {
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
         if (buymessage != null ? !buymessage.equals(that.buymessage) : that.buymessage != null) return false;
         if (invoicetitle != null ? !invoicetitle.equals(that.invoicetitle) : that.invoicetitle != null) return false;
-        if (sum != null ? !sum.equals(that.sum) : that.sum != null) return false;
+        //if (sum != null ? !sum.equals(that.sum) : that.sum != null) return false;
 
         return true;
     }
@@ -169,7 +194,7 @@ public class Orderdetails {
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (buymessage != null ? buymessage.hashCode() : 0);
         result = 31 * result + (invoicetitle != null ? invoicetitle.hashCode() : 0);
-        result = 31 * result + (sum != null ? sum.hashCode() : 0);
+        //result = 31 * result + (sum != null ? sum.hashCode() : 0);
         return result;
     }
 }

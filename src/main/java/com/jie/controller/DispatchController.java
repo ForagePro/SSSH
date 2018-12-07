@@ -56,6 +56,13 @@ public class DispatchController {
         }
         return JSON.toJSONString("false");
     }
+    //匹配运费
+    @RequestMapping("/toPay")
+    @ResponseBody
+    public String toPay(int id,String code){
+        Dispatch dispatch=dispatchService.toPay(id,code);
+        return JSON.toJSONString(dispatch);
+    }
 
     public void setDispatchService(DispatchService dispatchService) {
         this.dispatchService = dispatchService;

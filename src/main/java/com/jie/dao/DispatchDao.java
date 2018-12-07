@@ -15,4 +15,6 @@ public interface DispatchDao {
     public void update(Dispatch dispatch);
     //验证目的地
     public Dispatch testDest(String destination);
+    //匹配运费
+    public Dispatch toPay(int id,String code);
 }

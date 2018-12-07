@@ -52,13 +52,13 @@ public class Ordertime {
     }
 
     @Basic
-    @Column(name = "s_id")
-    public int getsId() {
+    @Column(name = "status")
+    public int getStatus() {
         return status;
     }
 
-    public void setsId(int sId) {
-        this.status = sId;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Basic

@@ -2,12 +2,17 @@ package com.jie.dao.impl;
 
 import com.jie.dao.DispatchDao;
 import com.jie.domain.Dispatch;
+import com.jie.domain.Orderdetails;
+import com.jie.domain.Receiveaddress;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +20,15 @@ import java.util.List;
 public class DispatchDaoImpl implements DispatchDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     @Override
     public void addDispatch(Dispatch dispatch) {
         hibernateTemplate.save(dispatch);
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -76,5 +87,37 @@ public class DispatchDaoImpl implements DispatchDao {
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
+    }
+
+    @Override
+    public Dispatch toPay(int id,String code) {
+        Session session1=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Orderdetails>list2 =session1.createQuery("from Orderdetails where oCode=?").setString(0,code).list();
+        Orderdetails orderdetails=list2.get(0);
+        Receiveaddress receiveaddress=hibernateTemplate.get(Receiveaddress.class,id);
+        String city=receiveaddress.getCity();
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Dispatch>list=session.createQuery("from Dispatch where destination like ?").setString(0,"%"+city+"%").list();
+        Dispatch dispatch=null;
+        if (list.size()==0){
+            dispatch=new Dispatch();
+            dispatch.setWay("快递");
+            BigDecimal b= BigDecimal.valueOf(16.0);
+            dispatch.setCost(b);
+            orderdetails.setdId(16.0);
+//            double sum= Double.parseDouble(String.format("%.2f", 16.0+orderdetails.getSum()));
+//            orderdetails.setSum(sum);
+        }else {
+            dispatch=list.get(0);
+            double did=dispatch.getCost().doubleValue();
+            orderdetails.setdId(did);
+//            double sum= Double.parseDouble(String.format("%.2f", did+orderdetails.getSum()));
+//            orderdetails.setSum(did+orderdetails.getSum());
+        }
+        orderdetails.setReceiveaddress(receiveaddress);
+        hibernateTemplate.update(orderdetails);
+//        String sql="update orderdetails set r_id="+id+" where o_code='"+code+"'";
+//        jdbcTemplate.update(sql);
+        return dispatch;
     }
 }

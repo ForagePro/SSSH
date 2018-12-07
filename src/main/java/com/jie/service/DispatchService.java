@@ -15,4 +15,6 @@ public interface DispatchService {
     public void update(Dispatch dispatch);
     //验证目的地
     public Dispatch testDest(String destination);
+
+    public Dispatch toPay(int id,String code);
 }
