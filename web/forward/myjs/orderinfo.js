@@ -166,7 +166,7 @@ function addEle(data) {
             '<p id="order-info-l4-2" className="order-info"><a href="">查看物流</a></p>');
         $("#Mystatus-l4").addClass("Mystatus");
         $("#order-info-l4-2").addClass("order-info");
-        $("#td-change").append('<div id="am-btn-danger-l4" className="am-btn am-btn-danger anniu"><a style="color: #fff" href="commentlist.html?code='+data.oCode+'">评价商品</a></div>');
+        $("#td-change").append('<div id="am-btn-danger-l4" className="am-btn am-btn-danger anniu"><a style="color: #fff" onclick="closeOrder('+data.oCode+')" href="commentlist.html?code='+data.oCode+'">评价商品</a></div>');
         $("#am-btn-danger-l4").addClass("am-btn am-btn-danger anniu");
     }else if(data.status==5){
         $("#item-status").append('<p id="Mystatus-l5" className="Mystatus">退款中</p>');
@@ -204,6 +204,16 @@ function receiptStatus(tmp,code) {
 function drawback(code) {
     $.get(path+"/order/closeOrder.do",
         {"code":code,"status":5},
+        function (data) {
+            if(data=="true"){
+                window.location.href="order.html";
+            }
+        },"json");
+}
+
+function closeOrder(code) {
+    $.get(path+"/order/closeOrder.do",
+        {"code":code,"status":7},
         function (data) {
             if(data=="true"){
                 window.location.href="order.html";

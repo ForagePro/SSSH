@@ -53,7 +53,10 @@ public class ReceiveaddressDaoImpl implements ReceiveaddressDao {
         String username=(String)request.getSession().getAttribute("USER_SESSION_KEY");
         Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
         List<User>list=session.createQuery("select u from User u where username=?").setString(0,username).list();
-        User user=list.get(0);
+        User user=new User();
+        if (list.size()!=0){
+            user=list.get(0);
+        }
         return user;
     }
 

@@ -129,7 +129,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Orderdetails> getOrderByUser(int id,int status) {
         Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
-        List<Orderdetails> list=session.createQuery("select o from Orderdetails o where u_id=? and o.ordertime.status=?").setParameter(0,id).setParameter(1,status).list();
+        List<Orderdetails> list=session.createQuery("select o from Orderdetails o where u_id=? and status=?").setParameter(0,id).setParameter(1,status).list();
         if(list!=null&&list.size()>0){
             return list;
         }

@@ -13,7 +13,7 @@
 	<link href="../css/cartstyle.css" rel="stylesheet" type="text/css" />
 
 	<link href="../css/jsstyle.css" rel="stylesheet" type="text/css" />
-
+	<script type="text/javascript" src="../myjs/index.js"></script>
 	<script type="text/javascript" src="../js/address.js"></script>
 
 </head>
@@ -24,24 +24,24 @@
 <div class="am-container header">
 	<ul class="message-l">
 		<div class="topMessage">
-			<div class="menu-hd">
-				<a href="#" target="_top" class="h">亲，请登录</a>
-				<a href="#" target="_top">免费注册</a>
+			<div class="menu-hd" id="user">
+				<!--<a href="#" target="_top" class="h">亲，请登录</a>-->
+				<!--<a href="#" target="_top">免费注册</a>-->
 			</div>
 		</div>
 	</ul>
 	<ul class="message-r">
 		<div class="topMessage home">
-			<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+			<div class="menu-hd"><a href="home3.html" target="_top" class="h">商城首页</a></div>
 		</div>
 		<div class="topMessage my-shangcheng">
-			<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+			<div class="menu-hd MyShangcheng"><a href="../person/index.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 		</div>
 		<div class="topMessage mini-cart">
-			<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+			<div class="menu-hd"><a id="mc-menu-hd" href="shopcart.html" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 		</div>
 		<div class="topMessage favorite">
-			<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+			<!--<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>-->
 		</div>
 	</ul>
 </div>
@@ -404,71 +404,71 @@
 
 				<!--信息 -->
 				<!--<div class="order-go clearfix">-->
-					<!--<div class="pay-confirm clearfix">-->
-						<!--<div class="box">-->
-							<!--<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>-->
-								<!--<span class="price g_price ">-->
-                                    <!--<span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>-->
-											<!--</span>-->
-							<!--</div>-->
+				<!--<div class="pay-confirm clearfix">-->
+				<!--<div class="box">-->
+				<!--<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>-->
+				<!--<span class="price g_price ">-->
+				<!--<span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>-->
+				<!--</span>-->
+				<!--</div>-->
 
-							<!--<div id="holyshit268" class="pay-address">-->
+				<!--<div id="holyshit268" class="pay-address">-->
 
-								<!--<p class="buy-footer-address">-->
-									<!--<span class="buy-line-title buy-line-title-type">寄送至：</span>-->
-									<!--<span class="buy&#45;&#45;address-detail">-->
-								   <!--<span class="province">湖北</span>省-->
-												<!--<span class="city">武汉</span>市-->
-												<!--<span class="dist">洪山</span>区-->
-												<!--<span class="street">雄楚大道666号(中南财经政法大学)</span>-->
-												<!--</span>-->
-									<!--</span>-->
-								<!--</p>-->
-								<!--<p class="buy-footer-address">-->
-									<!--<span class="buy-line-title">收货人：</span>-->
-									<!--<span class="buy-address-detail">-->
-                                         <!--<span class="buy-user">艾迪 </span>-->
-												<!--<span class="buy-phone">15871145629</span>-->
-												<!--</span>-->
-								<!--</p>-->
-							<!--</div>-->
-						<!--</div>-->
+				<!--<p class="buy-footer-address">-->
+				<!--<span class="buy-line-title buy-line-title-type">寄送至：</span>-->
+				<!--<span class="buy&#45;&#45;address-detail">-->
+				<!--<span class="province">湖北</span>省-->
+				<!--<span class="city">武汉</span>市-->
+				<!--<span class="dist">洪山</span>区-->
+				<!--<span class="street">雄楚大道666号(中南财经政法大学)</span>-->
+				<!--</span>-->
+				<!--</span>-->
+				<!--</p>-->
+				<!--<p class="buy-footer-address">-->
+				<!--<span class="buy-line-title">收货人：</span>-->
+				<!--<span class="buy-address-detail">-->
+				<!--<span class="buy-user">艾迪 </span>-->
+				<!--<span class="buy-phone">15871145629</span>-->
+				<!--</span>-->
+				<!--</p>-->
+				<!--</div>-->
+				<!--</div>-->
 
-						<div id="holyshit269" class="submitOrder">
-							<div class="go-btn-wrap">
-								<a id="J_Go" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
-							</div>
-						</div>
-						<div class="clear"></div>
+				<div id="holyshit269" class="submitOrder">
+					<div class="go-btn-wrap">
+						<a id="J_Go" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 					</div>
 				</div>
+				<div class="clear"></div>
 			</div>
+		</div>
+	</div>
 
-			<div class="clear"></div>
-		</div>
+	<div class="clear"></div>
+</div>
+</div>
+<div class="footer">
+	<div class="footer-hd">
+		<p>
+			<a href="#">恒望科技</a>
+			<b>|</b>
+			<a href="#">商城首页</a>
+			<b>|</b>
+			<a href="#">支付宝</a>
+			<b>|</b>
+			<a href="#">物流</a>
+		</p>
 	</div>
-	<div class="footer">
-		<div class="footer-hd">
-			<p>
-				<a href="#">恒望科技</a>
-				<b>|</b>
-				<a href="#">商城首页</a>
-				<b>|</b>
-				<a href="#">支付宝</a>
-				<b>|</b>
-				<a href="#">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd">
-			<p>
-				<a href="#">关于恒望</a>
-				<a href="#">合作伙伴</a>
-				<a href="#">联系我们</a>
-				<a href="#">网站地图</a>
-				<em>© 2015-2025 Hengwang.com 版权所有</em>
-			</p>
-		</div>
+	<div class="footer-bd">
+		<p>
+			<a href="#">关于恒望</a>
+			<a href="#">合作伙伴</a>
+			<a href="#">联系我们</a>
+			<a href="#">网站地图</a>
+			<em>© 2015-2025 Hengwang.com 版权所有</em>
+		</p>
 	</div>
+</div>
 </div>
 <div class="theme-popover-mask"></div>
 <div class="theme-popover">
@@ -498,20 +498,6 @@
 
 			<div class="am-form-group">
 				<label for="user-phone" class="am-form-label">所在地</label>
-				<!--<div class="am-form-content address">-->
-				<!--<select data-am-selected>-->
-				<!--<option value="a">浙江省</option>-->
-				<!--<option value="b">湖北省</option>-->
-				<!--</select>-->
-				<!--<select data-am-selected>-->
-				<!--<option value="a">温州市</option>-->
-				<!--<option value="b">武汉市</option>-->
-				<!--</select>-->
-				<!--<select data-am-selected>-->
-				<!--<option value="a">瑞安区</option>-->
-				<!--<option value="b">洪山区</option>-->
-				<!--</select>-->
-				<!--</div>-->
 				<div class="am-form-content address">
 					<div>
 						<select id="s_province" name="s_province"></select>
@@ -523,7 +509,6 @@
 					</div>
 					<div id="show"></div>
 				</div>
-
 				<script type="text/javascript">
                     var Gid  = document.getElementById ;
                     var showArea = function(){

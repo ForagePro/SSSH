@@ -89,7 +89,8 @@ $(function () {
 function addEle(data,tmp1,tmp) {
     for (var i in data){
         var mode=data[i];
-        var date=new Date(mode.ordertime.subTime);
+        var subTime=mode.ordertime.subTime;
+        var date=new Date(subTime);
         var time=formatDate(date);
         $("#order-list"+tmp).append('<div className="order-status1">'+
             '<div className="order-title">'+
@@ -135,55 +136,55 @@ function addEle(data,tmp1,tmp) {
         for(var j in mode.set){
             var item=mode.set[j];
             $("#pro"+tmp1+i).append('<ul id="item-list" className="item-list">'+
-                '<li id="td-item'+tmp1+j+'" className="td td-item">'+
-                    '<div id="item-pic'+tmp1+j+'" className="item-pic">'+
-                        '<a id="J_MakePoint'+tmp1+j+'" href="#" className="J_MakePoint">'+
-                            '<img id="J_ItemImg'+tmp1+j+'" src="'+path+item.commodity.imgPath+'" className="itempic J_ItemImg">'+
+                '<li id="td-item'+tmp1+i+j+'" className="td td-item">'+
+                    '<div id="item-pic'+tmp1+i+j+'" className="item-pic">'+
+                        '<a id="J_MakePoint'+tmp1+i+j+'" href="#" className="J_MakePoint">'+
+                            '<img id="J_ItemImg'+tmp1+i+j+'" src="'+path+item.commodity.imgPath+'" className="itempic J_ItemImg">'+
                         '</a>'+
                     '</div>'+
-                    '<div id="item-info'+tmp1+j+'" className="item-info">'+
-                        '<div id="item-basic-info'+tmp1+j+'" className="item-basic-info">'+
+                    '<div id="item-info'+tmp1+i+j+'" className="item-info">'+
+                        '<div id="item-basic-info'+tmp1+i+j+'" className="item-basic-info">'+
                             '<a href="#">'+
                                 '<p>'+item.commodity.name+'</p>'+
                             '</a>'+
                         '</div>'+
                     '</div>'+
                 '</li>'+
-                '<li id="td-price'+tmp1+j+'" className="td td-price">'+
-                    '<div id="item-price'+tmp1+j+'" className="item-price">'+item.commodity.price+'/'+item.commodity.unit+'</div>'+
+                '<li id="td-price'+tmp1+i+j+'" className="td td-price">'+
+                    '<div id="item-price'+tmp1+i+j+'" className="item-price">'+item.commodity.price+'/'+item.commodity.unit+'</div>'+
                 '</li>'+
-                '<li id="td-number'+tmp1+j+'" className="td td-number">'+
-                    '<div id="item-number'+tmp1+j+'" className="item-number">'+
+                '<li id="td-number'+tmp1+i+j+'" className="td td-number">'+
+                    '<div id="item-number'+tmp1+i+j+'" className="item-number">'+
                         '<span>×</span>'+item.num+
                     '</div>'+
                 '</li>'+
-                '<li id="td-operation'+tmp1+j+'" className="td td-operation">'+
-                    '<div id="item-operation'+tmp1+j+'" className="item-operation">'+
+                '<li id="td-operation'+tmp1+i+j+'" className="td td-operation">'+
+                    '<div id="item-operation'+tmp1+i+j+'" className="item-operation">'+
                     '</div>'+
                 '</li>'+
             '</ul>');
 
-            $("#item-list"+tmp1+j).addClass("item-list");
-            $("#td-item"+tmp1+j).addClass("td td-item");
-            $("#item-pic"+tmp1+j).addClass("item-pic");
-            $("#J_MakePoint"+tmp1+j).addClass("J_MakePoint");
-            $("#J_ItemImg"+tmp1+j).addClass("itempic J_ItemImg");
-            $("#item-info"+tmp1+j).addClass("item-info");
-            $("#item-basic-info"+tmp1+j).addClass("item-basic-info");
-            $("#td-price"+tmp1+j).addClass("td td-price");
-            $("#item-price"+tmp1+j).addClass("item-price");
-            $("#td-number"+tmp1+j).addClass("td td-number");
-            $("#item-number"+tmp1+j).addClass("item-number");
-            $("#td-operation"+tmp1+j).addClass("td td-operation");
-            $("#item-operation"+tmp1+j).addClass("item-operation");
+            $("#item-list"+tmp1+i+j).addClass("item-list");
+            $("#td-item"+tmp1+i+j).addClass("td td-item");
+            $("#item-pic"+tmp1+i+j).addClass("item-pic");
+            $("#J_MakePoint"+tmp1+i+j).addClass("J_MakePoint");
+            $("#J_ItemImg"+tmp1+i+j).addClass("itempic J_ItemImg");
+            $("#item-info"+tmp1+i+j).addClass("item-info");
+            $("#item-basic-info"+tmp1+i+j).addClass("item-basic-info");
+            $("#td-price"+tmp1+i+j).addClass("td td-price");
+            $("#item-price"+tmp1+i+j).addClass("item-price");
+            $("#td-number"+tmp1+i+j).addClass("td td-number");
+            $("#item-number"+tmp1+i+j).addClass("item-number");
+            $("#td-operation"+tmp1+i+j).addClass("td td-operation");
+            $("#item-operation"+tmp1+i+j).addClass("item-operation");
             if(mode.status==1){
 
             }else if(mode.status==2){
-                $("#item-operation"+tmp1+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款</a>');
+                $("#item-operation"+tmp1+i+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款</a>');
             }else if(mode.status==3){
-                $("#item-operation"+tmp1+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款/退货</a>');
+                $("#item-operation"+tmp1+i+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款/退货</a>');
             }else if(mode.status==4){
-                $("#item-operation"+tmp1+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款/退货</a>');
+                $("#item-operation"+tmp1+i+j).append('<a style="color: #000" onclick="drawback('+mode.oCode+')">退款/退货</a>');
             }else if(mode.status==5){
 
             }else if(mode.status==6){
@@ -193,55 +194,55 @@ function addEle(data,tmp1,tmp) {
             }
         }
         if(mode.status==1){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l1'+tmp1+'" className="Mystatus">等待买家付款</p>'+
-                '<p id="order-info-l1'+tmp1+'" className="order-info"><a style="color: #000" onclick="closeOrder('+mode.oCode+')">取消订单</a></p>');
-            $("#Mystatus-l1"+tmp1).addClass("Mystatus");
-            $("#order-info-l1"+tmp1).addClass("order-info");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l1'+tmp1+'" className="am-btn am-btn-danger anniu"><a style="color:#fff" href="../home/pay.html?code='+mode.oCode+'">一键付款</a></div>');
-            $("#am-btn-danger-l1"+tmp1).addClass("am-btn am-btn-danger anniu");
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l1'+tmp1+i+'" className="Mystatus">等待买家付款</p>'+
+                '<p id="order-info-l1'+tmp1+i+'" className="order-info"><a style="color: #000" onclick="closeOrder('+mode.oCode+')">取消订单</a></p>');
+            $("#Mystatus-l1"+tmp1+i).addClass("Mystatus");
+            $("#order-info-l1"+tmp1+i).addClass("order-info");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l1'+tmp1+i+'" className="am-btn am-btn-danger anniu"><a style="color:#fff" href="../home/pay.html?code='+mode.oCode+'">一键付款</a></div>');
+            $("#am-btn-danger-l1"+tmp1+i).addClass("am-btn am-btn-danger anniu");
         }else if(mode.status==2){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l2'+tmp1+'" className="Mystatus">买家已付款</p>'+
-                '<p id="order-info-l2'+tmp1+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>');
-            $("#Mystatus-l2"+tmp1).addClass("Mystatus");
-            $("#order-info-l2"+tmp1).addClass("order-info");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l2'+tmp1+'" className="am-btn am-btn-danger anniu">提醒发货</div>');
-            $("#am-btn-danger-l2"+tmp1).addClass("am-btn am-btn-danger anniu");
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l2'+tmp1+i+'" className="Mystatus">买家已付款</p>'+
+                '<p id="order-info-l2'+tmp1+i+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>');
+            $("#Mystatus-l2"+tmp1+i).addClass("Mystatus");
+            $("#order-info-l2"+tmp1+i).addClass("order-info");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l2'+tmp1+i+'" className="am-btn am-btn-danger anniu">提醒发货</div>');
+            $("#am-btn-danger-l2"+tmp1+i).addClass("am-btn am-btn-danger anniu");
         }else if(mode.status==3){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l3'+tmp1+'" className="Mystatus">卖家已发货</p>'+
-                '<p id="order-info-l3-1'+tmp1+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>'+
-                '<p id="order-info-l3-2'+tmp1+'" className="order-info"><a href="">查看物流</a></p>'+
-                '<p id="order-info-l3-3'+tmp1+'" className="order-info"><a href="">延长收货</a></p>');
-            $("#Mystatus-l3"+tmp1).addClass("Mystatus");
-            $("#order-info-l3-1"+tmp1).addClass("order-info");
-            $("#order-info-l3-2"+tmp1).addClass("order-info");
-            $("#order-info-l3-3"+tmp1).addClass("order-info");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l3'+tmp1+'" className="am-btn am-btn-danger anniu"><a style="color:#fff" onclick="receiptStatus(this,'+mode.oCode+')">确认收货</a></div>');
-            $("#am-btn-danger-l3"+tmp1).addClass("am-btn am-btn-danger anniu");
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l3'+tmp1+i+'" className="Mystatus">卖家已发货</p>'+
+                '<p id="order-info-l3-1'+tmp1+i+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>'+
+                '<p id="order-info-l3-2'+tmp1+i+'" className="order-info"><a href="">查看物流</a></p>'+
+                '<p id="order-info-l3-3'+tmp1+i+'" className="order-info"><a href="">延长收货</a></p>');
+            $("#Mystatus-l3"+tmp1+i).addClass("Mystatus");
+            $("#order-info-l3-1"+tmp1+i).addClass("order-info");
+            $("#order-info-l3-2"+tmp1+i).addClass("order-info");
+            $("#order-info-l3-3"+tmp1+i).addClass("order-info");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l3'+tmp1+i+'" className="am-btn am-btn-danger anniu"><a style="color:#fff" onclick="receiptStatus(this,'+mode.oCode+')">确认收货</a></div>');
+            $("#am-btn-danger-l3"+tmp1+i).addClass("am-btn am-btn-danger anniu");
         }else if(mode.status==4){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l4'+tmp1+'" className="Mystatus">交易成功</p>'+
-                '<p id="order-info-l4-1'+tmp1+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>'+
-                '<p id="order-info-l4-2'+tmp1+'" className="order-info"><a href="">查看物流</a></p>');
-            $("#Mystatus-l4"+tmp1).addClass("Mystatus");
-            $("#order-info-l4-1"+tmp1).addClass("order-info");
-            $("#order-info-l4-2"+tmp1).addClass("order-info");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l4'+tmp1+'" className="am-btn am-btn-danger anniu"><a style="color: #fff" href="commentlist.html?code='+mode.oCode+'">评价商品</a></div>');
-            $("#am-btn-danger-l4"+tmp1).addClass("am-btn am-btn-danger anniu");
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l4'+tmp1+i+'" className="Mystatus">交易成功</p>'+
+                '<p id="order-info-l4-1'+tmp1+i+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>'+
+                '<p id="order-info-l4-2'+tmp1+i+'" className="order-info"><a href="">查看物流</a></p>');
+            $("#Mystatus-l4"+tmp1+i).addClass("Mystatus");
+            $("#order-info-l4-1"+tmp1+i).addClass("order-info");
+            $("#order-info-l4-2"+tmp1+i).addClass("order-info");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l4'+tmp1+i+'" className="am-btn am-btn-danger anniu"><a style="color: #fff" onclick="closeOrder('+mode.oCode+')" href="commentlist.html?code='+mode.oCode+'">评价商品</a></div>');
+            $("#am-btn-danger-l4"+tmp1+i).addClass("am-btn am-btn-danger anniu");
         }else if(mode.status==5){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l5'+tmp1+'" className="Mystatus">退款中</p>'+
-                '<p id="order-info-l5-1'+tmp1+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>');
-            $("#Mystatus-l5"+tmp1).addClass("Mystatus");
-            $("#order-info-l5-1"+tmp1).addClass("order-info");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l5'+tmp1+'" className="am-btn am-btn-danger anniu"></div>');
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l5'+tmp1+i+'" className="Mystatus">退款中</p>'+
+                '<p id="order-info-l5-1'+tmp1+i+'" className="order-info"><a href="orderinfo.html?code='+mode.oCode+'">订单详情</a></p>');
+            $("#Mystatus-l5"+tmp1+i).addClass("Mystatus");
+            $("#order-info-l5-1"+tmp1+i).addClass("order-info");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l5'+tmp1+i+'" className="am-btn am-btn-danger anniu"></div>');
             /*$("#am-btn-danger-l5"+tmp1).addClass("am-btn am-btn-danger anniu");*/
         }else if(mode.status==6){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l6'+tmp1+'" className="Mystatus">退款成功</p>');
-            $("#Mystatus-l6"+tmp1).addClass("Mystatus");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l6'+tmp1+'" className="am-btn am-btn-danger anniu"></div>');
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l6'+tmp1+i+'" className="Mystatus">退款成功</p>');
+            $("#Mystatus-l6"+tmp+i).addClass("Mystatus");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l6'+tmp1+i+'" className="am-btn am-btn-danger anniu"></div>');
             /*$("#am-btn-danger-l6"+tmp1).addClass("am-btn am-btn-danger anniu");*/
         }else if(mode.status==7){
-            $("#item-status"+tmp1+i).append('<p id="Mystatus-l7'+tmp1+'" className="Mystatus">交易关闭</p>');
-            $("#Mystatus-l7"+tmp1).addClass("Mystatus");
-            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l7'+tmp1+'" className="am-btn am-btn-danger anniu"></div>');
+            $("#item-status"+tmp1+i).append('<p id="Mystatus-l7'+tmp1+i+'" className="Mystatus">交易关闭</p>');
+            $("#Mystatus-l7"+tmp1+i).addClass("Mystatus");
+            $("#td-change"+tmp1+i).append('<div id="am-btn-danger-l7'+tmp1+i+'" className="am-btn am-btn-danger anniu"></div>');
             /*$("#am-btn-danger-l7"+tmp1).addClass("am-btn am-btn-danger anniu");*/
         }
 

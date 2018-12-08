@@ -62,4 +62,11 @@ public class ReceiveaddressController {
         receiveaddressService.toDelete(id);
     }
 
+    @RequestMapping("/toGetUser")
+    @ResponseBody
+    public String toGetUser(HttpServletRequest request){
+        User user=receiveaddressService.toGetUser(request);
+        return JSON.toJSONString(user);
+    }
+
 }

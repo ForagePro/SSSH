@@ -60,38 +60,46 @@
     <mvc:resources mapping="/images/**" location="/forward/basic/"/>
     <mvc:resources mapping="/js/**" location="/forward/js/"/>
     <mvc:resources mapping="/images/**" location="/forward/images/"/>
-    <mvc:resources mapping="/js/**" location="/forward/home/"/>
+    <mvc:resources mapping="/js/**" location="/forward/home/**"/>
     <mvc:resources mapping="/images/**" location="/forward/person/"/>
     <mvc:resources mapping="/css/**" location="/forward/css/"/>
     <mvc:resources mapping="/js/**" location="/background/lib/"/>
     <mvc:resources mapping="/images/**" location="/background/static/"/>
     <mvc:resources mapping="/css/**" location="/background/temp/"/>
-
+    <mvc:resources mapping="/myjs/**" location="/background/myjs/**"/>
+    <mvc:resources mapping="/myjs/**" location="/forward/myjs/**"/>
     <!--登录拦截器-->
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--&lt;!&ndash; 拦截所有URL中包含/user/的请求 &ndash;&gt;-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/background/lib/**"/>-->
-            <!--<mvc:exclude-mapping path="/background/static/**"/>-->
-            <!--<mvc:exclude-mapping path="/background/temp/**"/>-->
-            <!--<mvc:exclude-mapping path="/background/login.html"/>-->
-            <!--<mvc:exclude-mapping path="/forward/images/**"/>-->
-            <!--<mvc:exclude-mapping path="/forward/AmazeUI-2.4.2/**"/>-->
-            <!--<mvc:exclude-mapping path="/forward/basic/**"/>-->
-            <!--<mvc:exclude-mapping path="/forward/css/**"/>-->
-            <!--<mvc:exclude-mapping path="/forward/js/**"/>-->
-            <!--<mvc:exclude-mapping path="/forward/frame.html"/>-->
-            <!--<mvc:exclude-mapping path="/forward/home/home*.html"/>-->
-            <!--<mvc:exclude-mapping path="/forward/.project"/>-->
-            <!--<mvc:exclude-mapping path="/**/login.html"/>-->
-            <!--<mvc:exclude-mapping path="/user/toLogin"/>-->
-            <!--<mvc:exclude-mapping path="/user/toRegister"/>-->
-            <!--<bean class="com.jie.controller.LoginInterceptor"></bean>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
-
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有URL中包含/user/的请求 -->
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/background/lib/**"/>
+            <mvc:exclude-mapping path="/background/static/**"/>
+            <mvc:exclude-mapping path="/background/temp/**"/>
+            <mvc:exclude-mapping path="/background/login.html"/>
+            <mvc:exclude-mapping path="/forward/images/**"/>
+            <mvc:exclude-mapping path="/forward/AmazeUI-2.4.2/**"/>
+            <mvc:exclude-mapping path="/forward/basic/**"/>
+            <mvc:exclude-mapping path="/forward/css/**"/>
+            <mvc:exclude-mapping path="/forward/js/**"/>
+            <mvc:exclude-mapping path="/forward/frame.html"/>
+            <mvc:exclude-mapping path="/forward/home/home3.html"/>
+            <mvc:exclude-mapping path="/forward/home/introduction.html"/>
+            <mvc:exclude-mapping path="/forward/.project"/>
+            <mvc:exclude-mapping path="/**/login.html"/>
+            <mvc:exclude-mapping path="/**/register.html"/>
+            <mvc:exclude-mapping path="/**/toLogin"/>
+            <mvc:exclude-mapping path="/user/toRegister"/>
+            <mvc:exclude-mapping path="/**/myjs/**"/>
+            <mvc:exclude-mapping path="/forward/images/**"/>
+            <mvc:exclude-mapping path="/valid/**"/>
+            <mvc:exclude-mapping path="/commodity/**"/>
+            <mvc:exclude-mapping path="/evaluate/toShow"/>
+            <mvc:exclude-mapping path="/round/**"/>
+            <mvc:exclude-mapping path="http://sandbox.runjs.cn/uploads/rs/267/g3ugugjp/area.js"/>
+            <bean class="com.jie.controller.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!--springmvc定义好的，用来处理上传文件的类-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置上传文件的最大尺寸为10MB -->

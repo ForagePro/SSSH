@@ -14,7 +14,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
         if (user == null) {
             System.out.println("尚未登录，调到登录页面");
-            response.sendRedirect(basePath+"background/login.html");
+//            response.sendRedirect(basePath+"background/login.html");
+            response.sendRedirect(basePath+"/forward/home/login.html");
             return false;
         }
         return true;

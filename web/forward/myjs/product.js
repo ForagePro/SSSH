@@ -17,4 +17,16 @@ $(function () {
         }
     },"json");
 
+    //获取用户
+    $.get(path+"/read/toGetUser",function (data) {
+        if (data.username==undefined){
+            $("#bbb").append('<a class="am-btn-warning btn" href="login.html">登录</a>\n' +
+                '\t\t\t\t\t\t\t\t<a class="am-btn-warning btn" href="register.html">注册</a>');
+        }else {
+            $("#s-name").html(data.username);
+            $("#uimg").attr("src",path+data.imgPath);
+        }
+    },"json")
+
+
 });
