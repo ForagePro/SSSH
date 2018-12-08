@@ -57,8 +57,8 @@ public class OrderController {
 
     @RequestMapping("/updateCode.do")
     @ResponseBody
-    public String updateCode(int id,String code,String name){
-        orderService.updateCode(id,code,name);
+    public String updateCode(int t_id,int o_id,String code,String name){
+        orderService.updateCode(t_id,o_id,code,name);
         return JSON.toJSONString("true");
     }
 

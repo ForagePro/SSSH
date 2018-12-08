@@ -20,7 +20,17 @@ public class Orderdetails {
     private Receiveaddress receiveaddress;
     private Set<Shoplist> set=new HashSet<>();
     private int status;
-   private double dId;
+    private double dId;
+
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "d_id")
@@ -53,7 +63,7 @@ public class Orderdetails {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "od_id")
+    @JoinColumn(name = "ot_id")
     public Ordertime getOrdertime() {
         return ordertime;
     }
@@ -70,16 +80,6 @@ public class Orderdetails {
 
     public void setReceiveaddress(Receiveaddress receiveaddress) {
         this.receiveaddress = receiveaddress;
-    }
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Basic
@@ -133,7 +133,15 @@ public class Orderdetails {
         this.sum = sum;
     }
 
+    @Basic
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -166,4 +174,5 @@ public class Orderdetails {
         //result = 31 * result + (sum != null ? sum.hashCode() : 0);
         return result;
     }
+
 }

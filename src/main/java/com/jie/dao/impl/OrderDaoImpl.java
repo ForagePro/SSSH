@@ -1,8 +1,10 @@
 package com.jie.dao.impl;
 
 import com.jie.dao.OrderDao;
+import com.jie.domain.Commodity;
 import com.jie.domain.Orderdetails;
 import com.jie.domain.Ordertime;
+import com.jie.domain.Shoplist;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -15,6 +17,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -83,17 +86,31 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void updateCode(int id,String code,String name) {
-        Ordertime ordertime=hibernateTemplate.get(Ordertime.class,id);
+    public void updateCode(int t_id,int o_id,String code,String name) {
+        Ordertime ordertime=hibernateTemplate.get(Ordertime.class,t_id);
+        Orderdetails orderdetails=hibernateTemplate.get(Orderdetails.class,o_id);
         Date date=new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.format(date);
         Timestamp timestamp=new Timestamp(date.getTime());
+        orderdetails.setStatus(3);
         ordertime.setStatus(3);
         ordertime.setCode(code);
         ordertime.setName(name);
         ordertime.setSendTime(timestamp);
-        hibernateTemplate.update(ordertime);
+         Iterator<Shoplist> iterator=orderdetails.getSet().iterator();
+         while (iterator.hasNext()){
+             Shoplist shoplist=iterator.next();
+             int num=shoplist.getNum();
+             Commodity commodity =shoplist.getCommodity();
+             double stock=commodity.getStockbalance();
+             stock=stock-num;
+             commodity.setStockbalance(stock);
+             shoplist.setCommodity(commodity);
+             orderdetails.getSet().add(shoplist);
+         }
+        orderdetails.setOrdertime(ordertime);
+        hibernateTemplate.update(orderdetails);
 
     }
 

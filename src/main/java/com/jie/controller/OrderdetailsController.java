@@ -46,4 +46,17 @@ public class OrderdetailsController {
     public void toUpdate(Orderdetails orderdetails){
         orderdetailsService.toUpdate(orderdetails);
     }
+
+    @RequestMapping("toShow")
+    @ResponseBody
+    public String toShow(int status,HttpServletRequest request){
+        List<Orderdetails>list=orderdetailsService.toShow(status,request);
+        return JSON.toJSONString(list);
+    }
+    @RequestMapping("toDelete")
+    @ResponseBody
+    public void toDelete(int id){
+        orderdetailsService.toDelete(id);
+    }
+
 }

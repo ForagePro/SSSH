@@ -51,7 +51,7 @@ function addEle(data) {
         var mode=data[i];
         var date=new Date(mode.ordertime.subTime);
         var time=formatDate(date);
-        if (mode.ordertime.status==1){
+        if (mode.status==1){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -60,7 +60,7 @@ function addEle(data) {
                 '\t\t\t\t<td>'+time+'</td>\n' +
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>'+
                 '\t\t\t</tr>');
-        } else if(mode.ordertime.status==2){
+        } else if(mode.status==2){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -68,9 +68,9 @@ function addEle(data) {
                 '\t\t\t\t<td class="td-status"><span class="label label-success radius" id="span'+mode.ordertime.status+'">待发货</span></td>\n' +
                 '\t\t\t\t<td>'+time+'</td>\n' +
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>&nbsp;&nbsp;&nbsp;'+
-                '<a style="text-decoration:none" href="logistics.html?id='+mode.ordertime.id+'" title="发货"><i class="Hui-iconfont">发货</i></a>'+
+                '<a style="text-decoration:none" href="logistics.html?o_id='+mode.id+"&t_id="+mode.ordertime.id+'" title="发货"><i class="Hui-iconfont">发货</i></a>'+
                 '\t\t\t</tr>');
-        }else if(mode.ordertime.status==3){
+        }else if(mode.status==3){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -79,7 +79,7 @@ function addEle(data) {
                 '\t\t\t\t<td>'+time+'</td>\n' +
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>'+
                 '\t\t\t</tr>');
-        }else if(mode.ordertime.status==4){
+        }else if(mode.status==4){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -88,7 +88,7 @@ function addEle(data) {
                 '\t\t\t\t<td>'+time+'</td>\n' +
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>'+
                 '\t\t\t</tr>');
-        }else if(mode.ordertime.status==5){
+        }else if(mode.status==5){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -98,7 +98,7 @@ function addEle(data) {
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-evrify.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="审核"><i class="Hui-iconfont">审核</i></a>&nbsp;&nbsp;&nbsp;'+
                 '<a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>'+
                 '\t\t\t</tr>');
-        }else if(mode.ordertime.status==6){
+        }else if(mode.status==6){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +
@@ -107,7 +107,7 @@ function addEle(data) {
                 '\t\t\t\t<td>'+time+'</td>\n' +
                 '\t\t\t\t<td class="td-manage"><a style="text-decoration:none" href="order-detail.html?id='+mode.id+'&status='+mode.ordertime.status+'" title="查看"><i class="Hui-iconfont">查看</i></a>'+
                 '\t\t\t</tr>');
-        }else if(mode.ordertime.status==7){
+        }else if(mode.status==7){
             $("#tb").append('<tr class="text-c">\n' +
                 '\t\t\t\t<td>'+ mode.oCode+'</td>\n' +
                 '\t\t\t\t<td>'+ mode.receiveaddress.name+'</td>\n' +

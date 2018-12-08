@@ -11,7 +11,7 @@ public interface OrderdetailsService {
     //购物车购买
     public String toAddList(Orderdetails orderdetails,HttpServletRequest request);
     //显示订单
-    public List<Orderdetails> toShow(int status);
+    public List<Orderdetails> toShow(int status,HttpServletRequest request);
     //修改状态
     public void toUpdateStatus(int id,int status);
     //删除订单

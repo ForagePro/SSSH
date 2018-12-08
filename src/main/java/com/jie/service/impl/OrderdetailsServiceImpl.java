@@ -50,8 +50,9 @@ public class OrderdetailsServiceImpl implements OrderdetailsService {
     }
 
     @Override
-    public List<Orderdetails> toShow(int status) {
-        return null;
+    public List<Orderdetails> toShow(int status,HttpServletRequest request) {
+        List<Orderdetails>list=orderdetailsDao.toShow(status,request);
+        return list;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class OrderdetailsServiceImpl implements OrderdetailsService {
 
     @Override
     public void toDelete(int id) {
-
+        orderdetailsDao.toDelete(id);
     }
 
     @Override

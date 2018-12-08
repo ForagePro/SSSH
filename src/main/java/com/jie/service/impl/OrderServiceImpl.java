@@ -33,8 +33,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateCode(int id,String code,String name) {
-        orderDao.updateCode(id,code,name);
+    public void updateCode(int t_id,int o_id,String code,String name) {
+        orderDao.updateCode(t_id,o_id,code,name);
     }
 
     @Override

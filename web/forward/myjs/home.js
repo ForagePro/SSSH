@@ -2,7 +2,7 @@ window.jQuery || document.write('<script src="basic/js/jquery.min.js "></script>
 var path = "/" + location.pathname.split("/")[1];
 $(function () {
    $.get(path+"/round/toFind",function (data) {
-       console.log(data);
+       //console.log(data);
        for(var i = 0;i<5;i++){
            if (i<data.length){
                $("#img"+(i+1)).attr("src",path+data[i].imgPath);

@@ -12,7 +12,7 @@ public interface OrderDao {
     public Orderdetails getOrder(int id);
     public void updateStatus(String code);
     public void updateStatusByCode(String code,int status);
-    public void updateCode(int id,String code,String name);
+    public void updateCode(int t_id,int o_id,String code,String name);
 
     public List<Orderdetails> getOrderByUId(int id);
 }

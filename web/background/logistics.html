@@ -15,15 +15,50 @@
 </head>
 <body>
     <div id="w">
-        物流单号：<input id="code" style="height: 20px" type="text"><br>
-        物流名称：<input id="name" style="height: 20px" type="text"><br>
+        物流单号：
+        <input id="code" style="height: 20px" type="text" readonly="readonly">
+        <button id="bt">获取物流单号</button>
+        <br>
+        <br>
+        物流名称：
+        <!--<input id="name" style="height: 20px" type="text"><br>-->
+        <select id="name">
+            <option>--请选择--</option>
+            <option value="顺丰">顺丰</option>
+            <option value="邮政">邮政</option>
+            <option value="中通">中通</option>
+            <option value="百世">百世</option>
+            <option value="圆通">圆通</option>
+            <option value="菜鸟驿站">菜鸟驿站</option>
+        </select>
+        <br><br>
         <button id="c-submit" onclick="addCode()" class="btn btn-primary radius">确定</button>
         <a id="" href="order-list.html" style="border: 1px #c2ccd1 solid;background-color: #0a628f;color: #FFFFFF;padding: 2px;">取消</a>
     </div>
 </body>
 <script>
     var path = "/" + location.pathname.split("/")[1];
+    
+    $("#bt").click(function () {
+        var num=randomNum(1000000000,99999999999);
+        $("#code").val(num);
+    });
 
+    function randomNum(minNum,maxNum){
+        switch(arguments.length){
+            case 1:
+                return parseInt(Math.random()*minNum+1);
+                break;
+            case 2:
+                return parseInt(Math.random()*(maxNum-minNum+1)+minNum);
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    
     function GetQueryString(name)
     {
         //(^|&)匹配^开始的位置匹配的第一个参数，&匹配的不是第一个参数
@@ -34,9 +69,10 @@
         return null;
     }
     function addCode() {
-        var id=GetQueryString("id");
+        var t_id=GetQueryString("t_id");
+        var o_id=GetQueryString("o_id");
         $.get(path+"/order/updateCode.do",
-            {"id":id,"code":$("#code").val(),"name":$("#name").val()},
+            {"t_id":t_id,"o_id":o_id,"code":$("#code").val(),"name":$("#name").val()},
             function (data) {
                 if(data=="true"){
                     window.location.href="order-list.html";

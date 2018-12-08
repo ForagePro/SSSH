@@ -75,30 +75,32 @@ $(function () {
                 var time5=formatDate(date5);
                 var time6=formatDate(date6);
                 var time7=formatDate(date7);
-                if(data.ordertime.status==1){
+                if(data.status==1){
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span>');
-                }else if(data.ordertime.status==2){
+                }else if(data.status==2){
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+
                     '<span>付款时间：'+time2+'</span>');
-                }else if(data.ordertime.status==3){
+                }else if(data.status==3){
+                    $("#o-order").append('<span>物流名称：'+data.ordertime.name+'</span><br>'+
+                        '<span id="code">物流单号：'+data.ordertime.code+'</span><br>');
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+
                         '<span>付款时间：'+time2+'</span><br>'+
                     '<span>发货时间：'+time3+'</span>');
-                }else if(data.ordertime.status==4){
+                }else if(data.status==4){
                     $("#o-order").append('<span>物流名称：'+data.ordertime.name+'</span><br>'+
                         '<span id="code">物流单号：'+data.ordertime.code+'</span><br>');
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+
                         '<span>付款时间：'+time2+'</span><br>'+
                         '<span>发货时间：'+time3+'</span><br>'+
                     '<span>确认收货时间：'+time4+'</span>');
-                }else if(data.ordertime.status==5){
+                }else if(data.status==5){
                     $("#o-order").append('<span>物流名称：'+data.ordertime.name+'</span><br>'+
                         '<span id="code">物流单号：'+data.ordertime.code+'</span><br>');
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+
                         '<span>付款时间：'+time2+'</span><br>'+
                         '<span id="way">发货时间：'+time3+'</span><br>'+
                     '<span>申请退款时间：'+time5+'</span>');
-                }else if(data.ordertime.status==6){
+                }else if(data.status==6){
                     $("#o-order").append('<span>物流名称：'+data.ordertime.name+'</span><br>'+
                         '<span id="code">物流单号：'+data.ordertime.code+'</span><br>');
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+
@@ -106,7 +108,7 @@ $(function () {
                         '<span>发货时间：'+time3+'</span><br>'+
                         '<span>申请退款时间：'+time5+'</span><br>'+
                     '<span>退款时间：'+time6+'</span>');
-                }else if(data.ordertime.status==7){
+                }else if(data.status==7){
                     $("#o-order").append('<span>物流名称：'+data.ordertime.name+'</span><br>'+
                         '<span id="code">物流单号：'+data.ordertime.code+'</span><br>');
                     $("#o-order").append('<span>提交订单时间：'+time1+'</span><br>'+

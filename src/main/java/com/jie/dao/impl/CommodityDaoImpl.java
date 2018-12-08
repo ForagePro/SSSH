@@ -35,7 +35,7 @@ public class CommodityDaoImpl implements CommodityDao {
             list=hibernateTemplate.loadAll(Commodity.class);
         }else {
             Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
-            list=session.createQuery("select c from Commodity c where status=?").setInteger(0,status).list();
+            list=session.createQuery("from Commodity where status=?").setInteger(0,status).list();
         }
         return list;
     }
@@ -47,8 +47,8 @@ public class CommodityDaoImpl implements CommodityDao {
     }
 
     public void addCommodity(Commodity commodity) {
-        Breed breed=hibernateTemplate.get(Breed.class,commodity.getBreed().getId());
-        commodity.setBreed(breed);
+        //Breed breed=hibernateTemplate.get(Breed.class,commodity.getBreed().getId());
+       // commodity.setBreed(breed);
         hibernateTemplate.save(commodity);
     }
 

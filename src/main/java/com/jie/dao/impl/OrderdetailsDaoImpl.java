@@ -12,10 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 public class OrderdetailsDaoImpl implements OrderdetailsDao {
@@ -105,9 +102,18 @@ public class OrderdetailsDaoImpl implements OrderdetailsDao {
     }
 
     @Override
-    public List<Orderdetails> toShow(int status) {
-
-        return null;
+    public List<Orderdetails> toShow(int status,HttpServletRequest request) {
+        String username=(String)request.getSession().getAttribute("USER_SESSION_KEY");
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<User>list=session.createQuery("select u from User u where username=?").setString(0,username).list();
+        User user=list.get(0);
+        List<Orderdetails>list1=new ArrayList<>();
+        if (status < 0) {
+            list1=session.createQuery("from Orderdetails where uid=?").setInteger(0,user.getId()).list();
+        }else {
+            list1=session.createQuery("from Orderdetails where uid=? and status=?").setInteger(0,user.getId()).setInteger(1,status).list();
+        }
+        return list1;
     }
 
     @Override
@@ -117,7 +123,8 @@ public class OrderdetailsDaoImpl implements OrderdetailsDao {
 
     @Override
     public void toDelete(int id) {
-
+        Orderdetails orderdetails=hibernateTemplate.get(Orderdetails.class,id);
+        hibernateTemplate.delete(orderdetails);
     }
 
     @Override
@@ -135,15 +142,16 @@ public class OrderdetailsDaoImpl implements OrderdetailsDao {
         Orderdetails orderdetails1=list.get(0);
         orderdetails1.setSum(orderdetails.getSum());
         orderdetails1.setStatus(2);
-        if (orderdetails.getBuymessage().length()!=0){
-            orderdetails1.setBuymessage(orderdetails.getBuymessage());
-        }else {
-            orderdetails.setBuymessage("暂无留言!");
-        }
+//        if (orderdetails.getBuymessage().length()!=0){
+//            orderdetails1.setBuymessage(orderdetails.getBuymessage());
+//        }else {
+//            orderdetails.setBuymessage("暂无留言!");
+//        }
         hibernateTemplate.update(orderdetails1);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         List<Ordertime> list1=session.createQuery("from Ordertime where oCode=?").setString(0,orderdetails.getoCode()).list();
         Ordertime ordertime=list1.get(0);
+        ordertime.setStatus(2);
         ordertime.setPayTime(timestamp);
         hibernateTemplate.update(ordertime);
     }

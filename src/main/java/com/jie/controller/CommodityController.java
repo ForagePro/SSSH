@@ -4,21 +4,30 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.jie.domain.Breed;
 import com.jie.domain.Commodity;
+import com.jie.service.BreedService;
 import com.jie.service.CommodityService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/commodity")
 public class CommodityController {
+    @Resource
+    private BreedService breedService;
+
+    public void setBreedService(BreedService breedService) {
+        this.breedService = breedService;
+    }
 
     @Autowired
     private CommodityService commodityService;
@@ -56,8 +65,7 @@ public class CommodityController {
         commodity.setImgPath("/forward/images/"+file.getOriginalFilename());
         System.out.println(file.getOriginalFilename());
         int b_id=Integer.parseInt(request.getParameter("bId"));
-        Breed breed=new Breed();
-        breed.setId(b_id);
+        Breed breed=breedService.getBreedById(b_id);
         commodity.setBreed(breed);
         commodityService.addCommodity(commodity);
         return JSON.toJSONString("true");

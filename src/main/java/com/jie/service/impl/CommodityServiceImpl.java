@@ -29,6 +29,11 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
+    public void addCommodity(Commodity commodity) {
+        commodityDao.addCommodity(commodity);
+    }
+
+    @Override
     public List<Commodity> select(int bId, int status, String keyword, int num, int page) {
         return commodityDao.select(bId,status,keyword,num,page);
     }
