@@ -69,11 +69,46 @@ public class OrderController {
         User user=userService.findUser(username);
         List<Orderdetails> list=orderService.getOrderByUId(user.getId());
         if(list!=null){
-            return JSON.toJSONString(list);
+            return JSON.toJSONString(list,SerializerFeature.DisableCircularReferenceDetect);
         }
         return JSON.toJSONString("false");
     }
 
+    @RequestMapping("/getOrderByUser.do")
+    @ResponseBody
+    public String getOrderByUser(HttpServletRequest request,int status){
+        String username=(String)request.getSession().getAttribute("USER_SESSION_KEY");
+        User user=userService.findUser(username);
+        List<Orderdetails> list=orderService.getOrderByUser(user.getId(),status);
+        if(list!=null){
+            return JSON.toJSONString(list,SerializerFeature.DisableCircularReferenceDetect);
+        }
+        return JSON.toJSONString("false");
+    }
+
+    @RequestMapping("/getOrderByCode.do")
+    @ResponseBody
+    public String getOrderByCode(String code){
+        Orderdetails orderdetails=orderService.getOrderByCode(code);
+        if(orderdetails!=null){
+            return JSON.toJSONString(orderdetails);
+        }
+        return JSON.toJSONString("false");
+    }
+
+    @RequestMapping("/receiptStatus.do")
+    @ResponseBody
+    public String receiptStatus(String code){
+        orderService.receiptStatus(code);
+        return JSON.toJSONString("true");
+    }
+
+    @RequestMapping("/closeOrder.do")
+    @ResponseBody
+    public String closeOrder(String code,int status){
+        orderService.closeOrder(code,status);
+        return JSON.toJSONString("true");
+    }
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

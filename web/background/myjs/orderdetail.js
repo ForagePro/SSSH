@@ -34,7 +34,7 @@ $(function () {
         {"id":id},
         function (data) {
             if(data!="false"){
-                $("#o-user").append('<span>订单号：'+data.oCode+'</span><span class="label label-success radius" style="margin-left: 40px">'+way+'</span><br>'+
+                $("#o-user").append('<span id="oCode">订单号：'+data.oCode+'</span><span class="label label-success radius" style="margin-left: 40px">'+way+'</span><br>'+
                 '<span>用户账号：'+data.user.username+'</span>');
                 $("#o-add").append('<span>收货人：'+data.receiveaddress.name+'</span><br><span>收货电话：'+data.receiveaddress.phone+'</span><br>'+
                 '<span>收货地址：'+data.receiveaddress.address+'</span><br>');
@@ -137,7 +137,7 @@ $(function () {
         var tmp=$('input[name="radio"]:checked').val();
         if(tmp==0){
             $.get(path+"/order/updateStatus.do",
-                {"code":$("#code").text()},
+                {"code":$("#oCode").text()},
                 function (data) {
                     if(data=="true"){
                         window.location.href="order-list.html";
@@ -152,7 +152,7 @@ $(function () {
                 status=3;
             }
             $.get(path+"/order/updateStatusByCode.do",
-                {"code":$("#code").text(),"status":status},
+                {"code":$("#oCode").text(),"status":status},
                 function (data) {
                     if(data=="true"){
                         window.location.href="order-list.html";

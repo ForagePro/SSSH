@@ -42,6 +42,26 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getOrderByUId(id);
     }
 
+    @Override
+    public List<Orderdetails> getOrderByUser(int id, int status) {
+        return orderDao.getOrderByUser(id,status);
+    }
+
+    @Override
+    public Orderdetails getOrderByCode(String code) {
+        return orderDao.getOrderByCode(code);
+    }
+
+    @Override
+    public void receiptStatus(String code) {
+        orderDao.receiptStatus(code);
+    }
+
+    @Override
+    public void closeOrder(String code,int status) {
+        orderDao.closeOrder(code,status);
+    }
+
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
