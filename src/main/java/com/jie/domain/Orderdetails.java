@@ -21,6 +21,17 @@ public class Orderdetails {
     private User user;                     //用户
     private Set<Shoplist> set=new HashSet<>();
     private double dId;
+    private int status;
+
+    @Basic
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     @Basic
     @Column(name = "d_id")

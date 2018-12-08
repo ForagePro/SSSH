@@ -62,23 +62,25 @@ public class OrderDaoImpl implements OrderDao {
         dateFormat.format(date);
         Timestamp timestamp=new Timestamp(date.getTime());
         Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
-        List<Ordertime> list=session.createQuery("from Ordertime where code=?").setParameter(0,code).list();
+        List<Orderdetails> list=session.createQuery("from Orderdetails where oCode=?").setParameter(0,code).list();
         if(list!=null&&list.size()>0){
-            Ordertime ordertime=list.get(0);
-            ordertime.setStatus(6);
-            ordertime.setSretTime(timestamp);
-            hibernateTemplate.update(ordertime);
+            Orderdetails orderdetails=list.get(0);
+            orderdetails.setStatus(6);
+            orderdetails.getOrdertime().setStatus(6);
+            orderdetails.getOrdertime().setSretTime(timestamp);
+            hibernateTemplate.update(orderdetails);
         }
     }
 
     @Override
     public void updateStatusByCode(String code, int status) {
         Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
-        List<Ordertime> list=session.createQuery("from Ordertime where code=?").setParameter(0,code).list();
+        List<Orderdetails> list=session.createQuery("from Orderdetails where oCode=?").setParameter(0,code).list();
         if(list!=null&&list.size()>0){
-            Ordertime ordertime=list.get(0);
-            ordertime.setStatus(status);
-            hibernateTemplate.update(ordertime);
+            Orderdetails orderdetails=list.get(0);
+            orderdetails.setStatus(status);
+            orderdetails.getOrdertime().setStatus(status);
+            hibernateTemplate.update(orderdetails);
         }
     }
 
@@ -105,6 +107,72 @@ public class OrderDaoImpl implements OrderDao {
             return list;
         }
         return null;
+    }
+
+    @Override
+    public List<Orderdetails> getOrderByUser(int id,int status) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Orderdetails> list=session.createQuery("select o from Orderdetails o where u_id=? and o.ordertime.status=?").setParameter(0,id).setParameter(1,status).list();
+        if(list!=null&&list.size()>0){
+            return list;
+        }
+        return null;
+    }
+
+    @Override
+    public Orderdetails getOrderByCode(String code) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Orderdetails> list=session.createQuery("from Orderdetails where oCode=?").setParameter(0,code).list();
+        if(list!=null&&list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public void receiptStatus(String code) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Orderdetails> list=session.createQuery("from Orderdetails where oCode=?").setParameter(0,code).list();
+        if(list!=null&&list.size()>0){
+            Date date=new Date();
+            SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            dateFormat.format(date);
+            Timestamp timestamp=new Timestamp(date.getTime());
+            Orderdetails orderdetails=list.get(0);
+            orderdetails.setStatus(4);
+            orderdetails.getOrdertime().setRecTime(timestamp);
+            orderdetails.getOrdertime().setStatus(4);
+            hibernateTemplate.update(orderdetails);
+        }
+    }
+
+    @Override
+    public void closeOrder(String code,int status) {
+        Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+        List<Orderdetails> list=session.createQuery("from Orderdetails where oCode=?").setParameter(0,code).list();
+        if(list!=null&&list.size()>0){
+            Date date=new Date();
+            SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            dateFormat.format(date);
+            Timestamp timestamp=new Timestamp(date.getTime());
+            Orderdetails orderdetails=list.get(0);
+            orderdetails.setStatus(status);
+            orderdetails.getOrdertime().setStatus(status);
+            if(status==2){
+                orderdetails.getOrdertime().setPayTime(timestamp);
+            }else if(status==3){
+                orderdetails.getOrdertime().setSendTime(timestamp);
+            }else if(status==4){
+                orderdetails.getOrdertime().setRecTime(timestamp);
+            }else if(status==5){
+                orderdetails.getOrdertime().setRetTime(timestamp);
+            }else if(status==6){
+                orderdetails.getOrdertime().setSretTime(timestamp);
+            }else if(status==7){
+                orderdetails.getOrdertime().setCloseTime(timestamp);
+            }
+            hibernateTemplate.update(orderdetails);
+        }
     }
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {

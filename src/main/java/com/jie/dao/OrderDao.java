@@ -15,4 +15,8 @@ public interface OrderDao {
     public void updateCode(int id,String code,String name);
 
     public List<Orderdetails> getOrderByUId(int id);
+    public List<Orderdetails> getOrderByUser(int id,int status);
+    public Orderdetails getOrderByCode(String code);
+    public void receiptStatus(String code);
+    public void closeOrder(String code,int status);
 }

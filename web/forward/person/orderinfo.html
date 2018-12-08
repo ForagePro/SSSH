@@ -16,7 +16,32 @@
 		<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 
+		<style type="text/css">
+			.step-2 .u-stage-icon-inner .bg {
+				opacity: 0;
+				background-image: url(../images/sprite.png);
+				background-position: -103px -135px;
+				width: 19px;
+				height: 19px;
 
+			}
+			.step-3 .u-stage-icon-inner .bg {
+				opacity: 0;
+				background-image: url(../images/sprite.png);
+				background-position: -103px -135px;
+				width: 19px;
+				height: 19px;
+
+			}
+			.step-4 .u-stage-icon-inner .bg {
+				opacity: 0;
+				background-image: url(../images/sprite.png);
+				background-position: -103px -135px;
+				width: 19px;
+				height: 19px;
+
+			}
+		</style>
 	</head>
 
 	<body>
@@ -103,22 +128,22 @@
 							<div class="m-progress-list">
 								<span class="step-1 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">1<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">1<em id="bg1" class="bg"></em></i>
                                    <p class="stage-name">拍下商品</p>
                                 </span>
 								<span class="step-2 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">2<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">2<em id="bg2" class="bg"></em></i>
                                    <p class="stage-name">卖家发货</p>
                                 </span>
 								<span class="step-3 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">3<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">3<em id="bg3" class="bg"></em></i>
                                    <p class="stage-name">确认收货</p>
                                 </span>
 								<span class="step-4 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">4<em class="bg"></em></i>
+                                   <i class="u-stage-icon-inner">4<em id="bg4" class="bg"></em></i>
                                    <p class="stage-name">交易完成</p>
                                 </span>
 								<span class="u-progress-placeholder"></span>
@@ -139,10 +164,10 @@
 											<span class="date">2015-12-19</span><span class="week">周六</span><span class="time">15:35:42</span>
 										</div>
 										<div class="inquire">
-											<span class="package-detail">物流：天天快递</span>
+											<span class="package-detail">物流：</span><span id="order-name"></span>
 											<span class="package-detail">快递单号: </span>
 											<span class="package-number">373269427868</span>
-											<a href="logistics.html">查看</a>
+											<!--<a href="logistics.html">查看</a>-->
 										</div>
 									</div>
 									<span class="am-icon-angle-right icon"></span>
@@ -160,9 +185,9 @@
 									<div class="new-mu_l2a new-p-re">
 										<p class="new-mu_l2cw">
 											<span class="title">收货地址：</span>
-											<span class="province">湖北</span>省
-											<span class="city">武汉</span>市
-											<span class="dist">洪山</span>区
+											<span class="province">湖北</span>
+											<span class="city">武汉</span>
+											<span class="dist">洪山</span>
 											<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
 									</div>
 								</div>
@@ -194,10 +219,10 @@
 								</div>
 							</div>
 
-							<div class="order-main">
+							<div id="order-main" class="order-main">
 
 								<div class="order-status3">
-									<div class="order-title">
+									<div id="order-title" class="order-title">
 										<div class="dd-num">订单编号：<a href="javascript:;">1601430</a></div>
 										<span>成交时间：2015-12-20</span>
 										<!--    <em>店铺：小桔灯</em>-->
@@ -383,5 +408,5 @@
 		</div>
 
 	</body>
-
+<script src="../myjs/orderinfo.js"></script>
 </html>
